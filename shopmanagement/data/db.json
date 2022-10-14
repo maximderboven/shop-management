@@ -1,0 +1,125 @@
+{
+  "locations": [
+    {
+      "id": 1,
+      "departement": "Fruit",
+      "x": 2,
+      "y": 3.4,
+      "x-rel": 1,
+      "y-rel": 2
+    },
+    {
+      "id": 2,
+      "departement": "Fish",
+      "x": 3,
+      "y": 4.5,
+      "x-rel": 2,
+      "y-rel": 3
+    },
+    {
+      "id": 3,
+      "departement": "Meat",
+      "x": 4,
+      "y": 5.6,
+      "x-rel": 3,
+      "y-rel": 4
+    },
+    {
+      "id": 4,
+      "departement": "Vegetables",
+      "x": 5,
+      "y": 6.7,
+      "x-rel": 4,
+      "y-rel": 5
+    },
+    {
+      "id": 5,
+      "departement": "Dairy",
+      "x": 6,
+      "y": 7.8,
+      "x-rel": 5,
+      "y-rel": 6
+    },
+    {
+      "id": 6,
+      "departement": "Bakery",
+      "x": 7,
+      "y": 8.9,
+      "x-rel": 6,
+      "y-rel": 7
+    },
+    {
+      "id": 7,
+      "departement": "Drinks",
+      "x": 8,
+      "y": 9.1,
+      "x-rel": 7,
+      "y-rel": 8
+    },
+    {
+      "id": 8,
+      "departement": "Frozen",
+      "x": 9,
+      "y": 1.2,
+      "x-rel": 8,
+      "y-rel": 9
+    },
+    {
+      "id": 9,
+      "departement": "Cleaning",
+      "x": 1,
+      "y": 2.3,
+      "x-rel": 9,
+      "y-rel": 1
+    }
+  ],
+  "ProductProperties": [
+    {
+      "id": 1,
+      "property": "color",
+      "value": "red"
+    },
+    {
+      "id": 2,
+      "property": "size",
+      "value": "small"
+    },
+    {
+      "id": 3,
+      "property": "weight",
+      "value": "heavy"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Product 1",
+      "price": 10.5,
+      "quantity": 1,
+      "description": "Product 1 Description",
+      "image": "http://www.example.com/image1.jpg",
+      "discount": false,
+      "location": 0
+    },
+    {
+      "id": 2,
+      "name": "Product 2",
+      "price": 20.5,
+      "quantity": 2,
+      "description": "Product 2 Description",
+      "image": "http://www.example.com/image2.jpg",
+      "discount": true,
+      "location": 0
+    },
+    {
+      "id": 3,
+      "name": "Product 3",
+      "price": 30.5,
+      "quantity": 3,
+      "description": "Product 3 Description",
+      "image": "http://www.example.com/image3.jpg",
+      "discount": false,
+      "location": 0
+    }
+  ]
+}
