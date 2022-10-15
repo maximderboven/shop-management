@@ -4,8 +4,10 @@ import {Alert, CircularProgress, Fab} from "@mui/material";
 import {useParams} from "react-router-dom";
 import { useState } from "react";
 import { useLocations } from "../hooks/useLocations";
+import "./css/floorplan.css"
 
 export function Floorplan() {
+  //const {innerWidth, innerHeight} = window;
     const {isLoading, isError, locations} = useLocations();
     if (isLoading) {
       return <CircularProgress />;
@@ -20,7 +22,7 @@ export function Floorplan() {
           <h1>Floorplan</h1>
           <ul>
             {locations.map((location) => (
-                <div key={location.id} style={{position:"absolute", bottom:location.x, left:location.y, height:location.height, width:location.width, backgroundColor:"black"}}>
+                <div key={location.id} style={{position:"absolute", bottom:(location.x/936)*100+"%", left:(location.y/1920)*100+"%", height:location.height, width:location.width, border:"5px solid black"}}>
                 </div>
             ))}
           </ul>
