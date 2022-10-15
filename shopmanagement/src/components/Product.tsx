@@ -1,17 +1,19 @@
-import { useState } from "react";
 import { Product as ProductModel } from "../model/Product";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import {useParams} from "react-router-dom";
+import { useProduct } from "../hooks/useProduct";
+import { useState } from "react";
 
 export function Product() {
-  const [loading, setIsLoading] = useState(true);
-  const [product, setProduct] = useState<ProductModel | null>(null);
-  const [error, setError] = useState<Error | null>(null);
+  const {id} = useParams();
+  const {isLoading, isError, product} = useProduct(id!);
 
-  if (loading) {
+  if (isLoading) {
     return <div>Loading...</div>;
   }
 
-  if (error) {
-    return <div>{error.message}</div>;
+  if (isError) {
+    return <div>Dikke error</div>;
   }
 
     if (product == null) {

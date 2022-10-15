@@ -4,13 +4,13 @@ import { useProducts } from "../hooks/useProducts";
 import { useState } from "react";
 
 export function Products() {
-  const {isLoading, isError, items} = useProducts();
+  const {isLoading, isError, products} = useProducts();
 
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
-  if (isError || items == null) {
+  if (isError || products == null) {
     return <div>Error</div>;
   }
 
@@ -18,7 +18,7 @@ export function Products() {
     <div>
         <h1>Products</h1>
         <ul>
-            {items.map((product: Product) => (
+            {products.map((product: Product) => (
                 <li key={product.id}>
                     {product.name} - {product.price}
                 </li>

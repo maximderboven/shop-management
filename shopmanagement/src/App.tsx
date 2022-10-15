@@ -3,11 +3,10 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import {AppBar, IconButton, Menu, Toolbar, Typography} from "@mui/material";
 import {useState} from "react";
-import { MenuBook } from "@material-ui/icons";
 import { Product } from "./components/Product";
 import { Products } from "./components/Products";
 import { EditProduct } from "./components/EditProduct";
-import { Floormap } from "./components/Floormap";
+import { Floormap } from "./components/Floorplan";
 import { CreateProduct } from "./components/CreateProduct";
 
 axios.defaults.baseURL = "http://localhost:3001";

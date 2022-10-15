@@ -7,12 +7,12 @@ export function useProducts() {
     const {
         isLoading,
         isError,
-        data: items,
+        data: products,
     } = useQuery(["items"], () => getProducts());
 
     return {
         isLoading,
         isError,
-        items,
+        products,
     };
 }

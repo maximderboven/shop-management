@@ -1,76 +1,126 @@
 {
+  "department": [
+    {
+      "id":1,
+      "name":"Fruit"
+    },
+    {
+      "id":2,
+      "name":"Vegetables"
+    },
+    {
+      "id":3,
+      "name":"Dairy"
+    },
+    {
+      "id":4,
+      "name":"Meat"
+    },
+    {
+      "id":5,
+      "name":"Bakery"
+    },
+    {
+      "id":6,
+      "name":"Frozen"
+    },
+    {
+      "id":7,
+      "name":"Canned"
+    },
+    {
+      "id":8,
+      "name":"Beverages"
+    },
+    {
+      "id":9,
+      "name":"Snacks"
+    },
+    {
+      "id":10,
+      "name":"Household"
+    },
+    {
+      "id":11,
+      "name":"Personal Care"
+    },
+    {
+      "id":12,
+      "name":"Other"
+    }
+  ],
   "locations": [
     {
       "id": 1,
-      "departement": "Fruit",
+      "departementID": 1,
       "x": 2,
       "y": 3.4,
-      "x-rel": 1,
-      "y-rel": 2
+      "width": 1,
+      "height": 2
     },
     {
       "id": 2,
-      "departement": "Fish",
+      "departement": 2,
       "x": 3,
       "y": 4.5,
-      "x-rel": 2,
-      "y-rel": 3
+      "width": 1,
+      "height": 2
     },
     {
       "id": 3,
-      "departement": "Meat",
+      "departement": 3,
       "x": 4,
       "y": 5.6,
-      "x-rel": 3,
-      "y-rel": 4
+      "width": 1,
+      "height": 2
     },
     {
       "id": 4,
-      "departement": "Vegetables",
+      "departement": 4,
       "x": 5,
       "y": 6.7,
-      "x-rel": 4,
-      "y-rel": 5
+      "width": 1,
+      "height": 2
     },
     {
       "id": 5,
-      "departement": "Dairy",
+      "departement": 4,
       "x": 6,
       "y": 7.8,
-      "x-rel": 5,
-      "y-rel": 6
+      "width": 1,
+      "height": 2
     },
     {
       "id": 6,
-      "departement": "Bakery",
+      "departement": 2,
       "x": 7,
       "y": 8.9,
-      "x-rel": 6,
-      "y-rel": 7
+      "width": 1,
+      "height": 2
     },
     {
       "id": 7,
-      "departement": "Drinks",
+      "departement": 3,
       "x": 8,
       "y": 9.1,
-      "x-rel": 7,
-      "y-rel": 8
+      "width": 1,
+      "height": 2
     },
     {
       "id": 8,
-      "departement": "Frozen",
+      "departement": 4,
       "x": 9,
       "y": 1.2,
-      "x-rel": 8,
-      "y-rel": 9
+      "width": 1,
+      "height": 2
     },
     {
       "id": 9,
-      "departement": "Cleaning",
+      "departement": 5,
       "x": 1,
       "y": 2.3,
-      "x-rel": 9,
-      "y-rel": 1
+      "width": 1,
+      "height": 2
     }
   ],
   "ProductProperties": [
