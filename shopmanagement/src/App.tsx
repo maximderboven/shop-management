@@ -6,7 +6,7 @@ import {useState} from "react";
 import { Product } from "./components/Product";
 import { Products } from "./components/Products";
 import { EditProduct } from "./components/EditProduct";
-import { Floormap } from "./components/Floorplan";
+import { Floorplan } from "./components/Floorplan";
 import { CreateProduct } from "./components/CreateProduct";
 
 axios.defaults.baseURL = "http://localhost:3001";
@@ -23,7 +23,7 @@ function App() {
             <Route path="/products" element={<Products />} />
             <Route path="/products/:id/edit" element={<EditProduct />} />
             <Route path="/products/create" element={<CreateProduct />} />
-            <Route path="/floormap" element={<Floormap />} />
+            <Route path="/floorplan" element={<Floorplan />} />
             <Route path="/" element={<Products />} />
           </Routes>
         </BrowserRouter>

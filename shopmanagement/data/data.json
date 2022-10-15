@@ -53,18 +53,18 @@
     {
       "id": 1,
       "departementID": 1,
-      "x": 2,
-      "y": 3.4,
-      "width": 1,
-      "height": 2
+      "x": 700,
+      "y": 500,
+      "width": 30,
+      "height": 50
     },
     {
       "id": 2,
       "departement": 2,
-      "x": 3,
-      "y": 4.5,
-      "width": 1,
-      "height": 2
+      "x": 700,
+      "y": 300,
+      "width": 30,
+      "height": 50
     },
     {
       "id": 3,
