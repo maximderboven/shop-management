@@ -18,7 +18,7 @@ export function Floorplan() {
       return <Alert severity="error">Locations could not be loaded</Alert>;
     } else {
       return (
-        <div>
+        <div className="bgimage">
           <h1>Floorplan</h1>
           <ul>
             {locations.map((location) => (
