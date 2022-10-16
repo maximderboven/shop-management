@@ -1,0 +1,27 @@
+.flexrow {
+  /* first breakpoint*/
+  --w1:1200px;
+  --n:6;
+  /* second breakpoint*/
+  --w2:800px;
+  --m:4;
+  /* third breakpoint*/
+  --w3:400px;
+  --p:2;
+
+  display:grid;
+  grid-template-columns:
+    repeat(auto-fill,
+      minmax(clamp(clamp(clamp(  
+            100%/(var(--n) + 1) + 0.1%,
+              (var(--w1) - 100%)*1000,
+            100%/(var(--m) + 1) + 0.1%), 
+              (var(--w2) - 100%)*1000,
+            100%/(var(--p) + 1) + 0.1%), 
+              (var(--w3) - 100%)*1000,
+            100%), 1fr));
+  gap:10px;
+  overflow:hidden;
+  margin:5px;
+  resize:horizontal;
+  }

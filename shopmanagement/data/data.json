@@ -167,21 +167,21 @@
   "products": [
     {
       "id": 1,
-      "name": "Product 1",
+      "name": "Milk",
       "price": 10.5,
       "quantity": 1,
-      "description": "Product 1 Description",
-      "image": "http://www.example.com/image1.jpg",
+      "description": "Milk is essentially an emulsion of fat and protein in water, along with dissolved sugar (carbohydrate), minerals, and vitamins.",
+      "image": "https://img.freepik.com/free-photo/fresh-milk-mug-jug-wooden-table_114579-18233.jpg",
       "discount": false,
       "location": 0
     },
     {
       "id": 2,
-      "name": "Product 2",
+      "name": "Bread",
       "price": 20.5,
       "quantity": 2,
-      "description": "Product 2 Description",
-      "image": "http://www.example.com/image2.jpg",
+      "description": "Bread is a food consisting of flour or meal that is moistened, kneaded into dough, and often fermented using yeast",
+      "image": "https://img.freepik.com/free-photo/delicious-bread-table_144627-12454.jpg",
       "discount": true,
       "location": 0
     },
