@@ -4,7 +4,9 @@ import {Alert, CircularProgress, Fab} from "@mui/material";
 import {useParams} from "react-router-dom";
 import { useState } from "react";
 import { useLocations } from "../hooks/useLocations";
+import { Button } from "@mui/material";
 import "./css/floorplan.css"
+import { Add } from '@mui/icons-material';
 
 export function Floorplan() {
   //const {innerWidth, innerHeight} = window;
@@ -23,6 +25,9 @@ export function Floorplan() {
           <ul>
             {locations.map((location) => (
                 <div key={location.id} style={{position:"absolute", bottom:(location.x/936)*100+"%", left:(location.y/1920)*100+"%", height:location.height, width:location.width, border:"5px solid black"}}>
+                  <Button className="addsign" href={"/locations/"+location.id}>
+                  <Add />
+                  </Button>
                 </div>
             ))}
           </ul>
