@@ -3,8 +3,9 @@ export interface Product {
     name: string;
     price: number;
     description: string;
-    quantity: number;
-    location: Location;
     image: string;
     discount: boolean;
+    discountPercentage: number;
 }
+
+export type ProductItem = Omit<Product, "id">;
