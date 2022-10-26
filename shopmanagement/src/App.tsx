@@ -3,11 +3,12 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import {AppBar, IconButton, Menu, Toolbar, Typography} from "@mui/material";
 import {useState} from "react";
-import { Product } from "./components/Product";
-import { Products } from "./components/Products";
-import { EditProduct } from "./components/EditProduct";
-import { Floorplan } from "./components/Floorplan";
-import { CreateProduct } from "./components/CreateProduct";
+import { Product } from "./components/Products/Product";
+import { Products } from "./components/Products/Products";
+import { EditProduct } from "./components/Products/EditProduct";
+import { Floorplan } from "./components/Floorplan/Floorplan";
+import { CreateProduct } from "./components/Products/CreateProduct";
+import { Departments } from "./components/Departments/Departments";
 
 axios.defaults.baseURL = "http://localhost:3001";
 const queryClient = new QueryClient();
@@ -23,8 +24,8 @@ function App() {
             <Route path="/products" element={<Products />} />
             <Route path="/products/:id/edit" element={<EditProduct />} />
             <Route path="/products/create" element={<CreateProduct />} />
-            <Route path="/floorplan" element={<Floorplan />} />
-            <Route path="/" element={<Products />} />
+            <Route path="/floorplan/:id" element={<Floorplan />} />
+            <Route path="/" element={<Departments />} />
           </Routes>
         </BrowserRouter>
       </QueryClientProvider>

@@ -1,4 +1,4 @@
-import { Product } from "../model/Product";
+import { Product } from "../../model/Product";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 
