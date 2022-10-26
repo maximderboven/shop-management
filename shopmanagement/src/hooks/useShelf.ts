@@ -1,6 +1,5 @@
 import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
-import {Location} from "../model/Location";
-import {getLocations} from "../services/LocationDataService";
+import {getShelfs} from "../services/ShelfDataService";
 
 export function useLocations() {
     const queryClient = useQueryClient();
@@ -8,7 +7,7 @@ export function useLocations() {
         isLoading,
         isError,
         data: locations,
-    } = useQuery(["locations"], () => getLocations());
+    } = useQuery(["locations"], () => getShelfs());
 
     return {
         isLoading,

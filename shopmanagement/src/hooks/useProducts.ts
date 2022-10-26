@@ -11,8 +11,8 @@ export function useProducts() {
     } = useQuery(["items"], () => getProducts());
 
     return {
-        isLoading,
-        isError,
+        isLoadingProducts: isLoading,
+        isErrorProducts: isError,
         products,
     };
 }
