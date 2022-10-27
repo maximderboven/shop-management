@@ -2,7 +2,7 @@ import { Shelf } from "../../model/Shelf";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { Alert, CircularProgress, Fab } from "@mui/material";
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useLocations } from "../../hooks/useShelf";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -21,10 +21,17 @@ import { DraggableProduct } from "./DraggableProduct";
 import { getColor } from "../../utils/colorgrading";
 import { useDepartmentWithId } from "../../hooks/useDepartments";
 import { ShelfProduct, ShelfProductData } from "../../model/ShelfProduct";
+import AddStockDialog from "./AddStockDialog";
+import EditStockDialog from "./EditStockDialog";
+import UserContext, { IUserContext } from "../../context/UserContext";
 
 export function Floorplan({}) {
   //const {innerWidth, innerHeight} = window;
+  const { email } = useContext<IUserContext>(UserContext);
   const { isLoadingProducts, isErrorProducts, products } = useProducts();
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<number | null>(null);
+  const [selectedShelf, setSelectedShelf] = useState<number | null>(null);
   const { id } = useParams();
   const { isErrorShelfsFromDepartment, isLoadingShelfsFromDepartment, shelfs } =
     useShelfsFromDepartment(id!);
@@ -33,7 +40,7 @@ export function Floorplan({}) {
     isLoadingStoredProducts,
     storedproducts,
     storeProductMutation,
-    deleteProductMutation
+    deleteProductMutation,
   } = useStoredProducts();
   const { isLoadingDepartmentWithId, isErrorDepartmentWithId, department } =
     useDepartmentWithId(id!);
@@ -46,6 +53,10 @@ export function Floorplan({}) {
     storeProductMutation({ ...data, shelfId, productId });
   };
 
+  const editStoredProduct = (data: ShelfProduct) => {
+    storeProductMutation({ ...data});
+  };
+
   const deleteStoredProduct = (id: number) => {
     deleteProductMutation(id);
   };
@@ -54,15 +65,9 @@ export function Floorplan({}) {
     if (!result.destination) {
       return;
     }
-    storeProduct(
-      {
-        spot: 0,
-        quantity: 5,
-        MaxQuantity: 5,
-      },
-      Number(result.destination.droppableId),
-      Number(result.draggableId)
-    );
+    setSelectedProduct(result.draggableId);
+    setSelectedShelf(result.destination.droppableId);
+    setIsDialogOpen(true);
     console.log(result.source.index);
     console.log(result.destination.droppableId);
   };
@@ -85,6 +90,7 @@ export function Floorplan({}) {
     return (
       <div className="wrapper bgimage">
         <DragDropContext onDragEnd={onDragEnd}>
+          {(email) && (
           <div className="sidebar">
             <Droppable droppableId="products">
               {(provided) => (
@@ -103,6 +109,7 @@ export function Floorplan({}) {
               )}
             </Droppable>
           </div>
+          )}
           <div className="main">
             <Typography variant="h4">Floorplan: {department?.name} </Typography>
             {shelfs.map((shelf) => {
@@ -130,17 +137,18 @@ export function Floorplan({}) {
                               height: shelf.height,
                               width: shelf.width,
                               border: "5px solid",
-                              borderColor: getColor(
+                              borderColor: (email) ? getColor(
                                 1 -
                                   storedproduct.quantity /
                                     storedproduct.MaxQuantity
-                              ),
+                              ) : "black",
                             }}
                           >
                             {products.map((product) => {
                               if (product.id === storedproduct.productId) {
                                 return (
                                   <div className="product">
+                                    {(email) && (
                                     <CancelIcon
                                       onClick={() =>
                                         deleteStoredProduct(storedproduct.id)
@@ -154,6 +162,7 @@ export function Floorplan({}) {
                                         zIndex: 100,
                                       }}
                                     />
+                                    )}
                                     <img
                                       src={product?.image}
                                       alt={product?.name}
@@ -196,6 +205,13 @@ export function Floorplan({}) {
             })}
           </div>
         </DragDropContext>
+        <AddStockDialog
+          isOpen={isDialogOpen}
+          onClose={() => setIsDialogOpen(false)}
+          productId={selectedProduct!}
+          shelfId={selectedShelf!}
+          onSubmit={storeProduct}
+        />
       </div>
     );
   }

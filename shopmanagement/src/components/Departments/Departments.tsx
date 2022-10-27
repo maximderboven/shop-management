@@ -22,8 +22,11 @@ import { ShelfProduct } from "../../model/ShelfProduct";
 import { Shelf } from "../../model/Shelf";
 import { StoredProductCard } from "../Products/StoredProductCard";
 import './css/departments.css'
+import {useContext} from "react";
+import UserContext, { IUserContext } from "../../context/UserContext";
 
 export function Departments() {
+  const { email } = useContext<IUserContext>(UserContext);
   const { isLoadingDepartments:isLoading, isErrorDepartments:isError, departments } = useDepartments();
   const { isLoadingStoredProducts, isErrorStoredProducts, storedproducts } =
     useStoredProducts();
@@ -50,6 +53,7 @@ export function Departments() {
     return <Alert severity="error">Product could not be loaded</Alert>;
   } else {
     return (
+      email ? (
       <div>
         <Box
           sx={{
@@ -131,6 +135,9 @@ export function Departments() {
           </Grid>
         </Container>
       </div>
+    ) : (
+      null
+    )
     );
   }
 }
