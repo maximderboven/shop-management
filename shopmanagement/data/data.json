@@ -257,6 +257,14 @@
       "shelfId": 13,
       "productId": 2,
       "id": 18
+    },
+    {
+      "spot": 0,
+      "quantity": 5,
+      "MaxQuantity": 5,
+      "shelfId": null,
+      "productId": 1,
+      "id": 19
     }
   ],
   "products": [

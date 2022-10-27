@@ -13,6 +13,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { Navigation } from "./components/Navigation";
 import About from "./components/About";
 import Settings from "./components/Settings";
+import { useEffect } from "react";
 
 axios.defaults.baseURL = "http://localhost:3001";
 const queryClient = new QueryClient();
@@ -22,10 +23,10 @@ type HeaderProps = {
 };
 
 const Header = ({ onOpenDrawer }: HeaderProps) => (
-  <AppBar position="static" color="transparent"  style={{zIndex:10000}}>
+  <AppBar position="static" color="transparent"  style={{zIndex:10000,backgroundColor:"#234671",color:"white"}}>
     <Toolbar sx={{ justifyContent: "flex-start" }}>
       <IconButton onClick={onOpenDrawer}>
-        <MenuIcon />
+        <MenuIcon style={{ color: 'white' }}/>
       </IconButton>
       <Typography variant="h6">UI3Shop</Typography>
     </Toolbar>
@@ -34,10 +35,15 @@ const Header = ({ onOpenDrawer }: HeaderProps) => (
 
 function App() {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [title, setTitle] = useState("UI3SHOP");
 
   const handleDrawerToggle = () => {
     setDrawerOpen(!drawerOpen);
   };
+
+  useEffect(() => {
+    document.title = title;
+  }, [title]);
 
   return (
     <>

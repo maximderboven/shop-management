@@ -21,6 +21,7 @@ import { Department } from "../../model/Department";
 import { ShelfProduct } from "../../model/ShelfProduct";
 import { Shelf } from "../../model/Shelf";
 import { StoredProductCard } from "../Products/StoredProductCard";
+import './css/departments.css'
 
 export function Departments() {
   const { isLoadingDepartments:isLoading, isErrorDepartments:isError, departments } = useDepartments();
