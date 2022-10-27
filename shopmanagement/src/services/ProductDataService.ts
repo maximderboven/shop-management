@@ -57,3 +57,18 @@ export const getStoredProducts = async () => {
     const response = await axios.get<ShelfProduct[]>(`http://localhost:3001/shelfproducts`);
     return response.data;
 }
+
+export const storeProduct = async (shelfProduct: Omit<ShelfProduct, "id">) => {
+    const response = await axios.post<ShelfProduct>(`http://localhost:3001/shelfproducts`, shelfProduct);
+    return response.data;
+}
+
+export const updateStoredProduct = async (shelfProduct: ShelfProduct) => {
+    const response = await axios.put<ShelfProduct>(`http://localhost:3001/shelfproducts/${shelfProduct.id}`, shelfProduct);
+    return response.data;
+}
+
+export const deleteStoredProduct = async (id: number) => {
+    const response = await axios.delete<ShelfProduct>(`http://localhost:3001/shelfproducts/${id}`);
+    return response.data;
+}

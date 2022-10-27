@@ -50,8 +50,10 @@ export function Product() {
               />
             </Grid>
             <Grid item xs={12} md={4}>
-              <Stock product={product} />
               <Properties />
+            </Grid>
+            <Grid item xs={12} md={10}>
+            <Stock product={product} />
             </Grid>
             {/* End sidebar */}
           </Grid>

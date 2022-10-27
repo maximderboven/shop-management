@@ -16,7 +16,7 @@ export function Price({ product }: { product: ProductModel }) {
   if (!product.discount) {
     return (
       <Typography variant="h6" gutterBottom>
-        {product.price}
+        €{product.price}
       </Typography>
     );
   } else {

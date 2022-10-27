@@ -1,10 +1,13 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { ShelfProduct } from "../model/ShelfProduct";
 import {
   getStoredProductsOnShelfs,
   getStoredProductOnShelf,
   getStoredProductsFromProducts,
   getStoredProductsFromProduct,
-  getStoredProducts
+  getStoredProducts,
+  storeProduct,
+  deleteStoredProduct
 } from "../services/ProductDataService";
 
 export const useStoredProductsFromShelf = (shelfId: number) => {
@@ -76,9 +79,45 @@ export const useStoredProducts = () => {
     isError,
     data: products,
   } = useQuery(["products"], () => getStoredProducts());
+
+  const {
+    mutate: storeProductMutation,
+    isLoading: isStoringProduct,
+    isError: isErrorStoringProduct,
+} = useMutation(
+    (shelfproduct: Omit<ShelfProduct, "id">) => storeProduct(shelfproduct),
+    {
+        onSuccess: () => {
+            queryClient.invalidateQueries(["products"]);
+        },
+    }
+);
+
+    const {
+      mutate : deleteProductMutation,
+      isLoading: isDeletingStoredProduct,
+      isError: isErrorDeletingStoredProduct,
+    } = useMutation(
+      (shelfproductid:number) => deleteStoredProduct(shelfproductid),
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries(["products"]);
+        },
+      }
+    );
+
   return {
     isLoadingStoredProducts,
     isErrorStoredProducts: isError,
     storedproducts:products,
+    storeProductMutation: storeProductMutation,
+    isStoringProduct,
+    isErrorStoringProduct,
+    deleteProductMutation: deleteProductMutation,
+    isDeletingStoredProduct,
+    isErrorDeletingStoredProduct,
+
   };
+
+  
 }
