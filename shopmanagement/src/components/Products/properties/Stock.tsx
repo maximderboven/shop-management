@@ -16,8 +16,12 @@ import { Link } from "react-router-dom";
 import { getColor } from "../../../utils/colorgrading";
 import { useShelfs } from "../../../hooks/useShelfs";
 import { useDepartments } from "../../../hooks/useDepartments";
+import { useContext } from "react";
+import UserContext, { IUserContext } from "../../../context/UserContext";
+
 
 export function Stock({ product }: { product: ProductModel }) {
+  const { email } = useContext<IUserContext>(UserContext);
   const { isLoading, isError, storedproducts } = useStoredProductsFromProduct(
     product.id
   );
@@ -54,11 +58,11 @@ export function Stock({ product }: { product: ProductModel }) {
                                   justifyContent: "space-between",
                                   p: 1,
                                   m: 1,
-                                  bgcolor: getColor(
+                                  bgcolor: (email) ? getColor(
                                     1 -
                                       storedproduct.quantity /
                                         storedproduct.MaxQuantity
-                                  ),
+                                  ) : "white",
                                   borderRadius: 1,
                                 }}
                               >
