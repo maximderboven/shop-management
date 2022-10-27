@@ -3,7 +3,6 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { useProducts } from "../../hooks/useProducts";
 import { useState } from "react";
 import { ProductCard } from "./ProductCard";
-import "../css/products.css";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";

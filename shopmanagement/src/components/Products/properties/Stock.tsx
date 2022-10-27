@@ -39,47 +39,60 @@ export function Stock({ product }: { product: ProductModel }) {
             Stock & Locations
           </Typography>
           <Divider />
-          <Typography variant="h6" gutterBottom>
-            {storedproducts.map((storedproduct) => (
-              <div>
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    p: 1,
-                    m: 1,
-                    bgcolor: getColor(
-                      1 - storedproduct.quantity / storedproduct.MaxQuantity
-                    ),
-                    borderRadius: 1,
-                  }}
-                >
-                  {shelfs!.map((shelf) => (
-                    <>
-                      {shelf.id === storedproduct.shelfId
-                        ? departments!.map((department) => (
+          {storedproducts.map((storedproduct) => (
+            <>
+              {shelfs!.map((shelf) => (
+                <>
+                  {shelf.id === storedproduct.shelfId
+                    ? departments!.map((department) => (
+                        <>
+                          {department.id === shelf.departmentId ? (
                             <>
-                              {department.id === shelf.departmentId ? (
-                                <>
-                                  <Typography variant="h5" component="h2" style={{ display: "flex", justifyContent: "flex-start" }}>
-                                    {storedproduct.quantity}/
-                                    {storedproduct.MaxQuantity}{" "}-{" "}
-                                    {department.name}
-                                  </Typography>
-                                  <Link to={`/floorplan/${department.id}`} style={{ display: "flex", justifyContent: "flex-end" }}>
-                                    <Button>View Floorplan</Button>
-                                  </Link>
-                                </>
-                              ) : null}
+                              <Box
+                                sx={{
+                                  display: "flex",
+                                  justifyContent: "space-between",
+                                  p: 1,
+                                  m: 1,
+                                  bgcolor: getColor(
+                                    1 -
+                                      storedproduct.quantity /
+                                        storedproduct.MaxQuantity
+                                  ),
+                                  borderRadius: 1,
+                                }}
+                              >
+                                <Typography
+                                  variant="h5"
+                                  component="h2"
+                                  style={{
+                                    display: "flex",
+                                    justifyContent: "flex-start",
+                                  }}
+                                >
+                                  {storedproduct.quantity}/
+                                  {storedproduct.MaxQuantity} -{" "}
+                                  {department.name}
+                                </Typography>
+                                <Link
+                                  to={`/floorplan/${department.id}`}
+                                  style={{
+                                    display: "flex",
+                                    justifyContent: "flex-end",
+                                  }}
+                                >
+                                  <Button>View Floorplan</Button>
+                                </Link>
+                              </Box>
                             </>
-                          ))
-                        : ""}
+                          ) : null}
                         </>
-                  ))}
-                </Box>
-              </div>
-            ))}
-          </Typography>
+                      ))
+                    : null}
+                </>
+              ))}
+            </>
+          ))}
         </Paper>
       </div>
     );

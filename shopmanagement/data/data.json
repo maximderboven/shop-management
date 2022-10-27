@@ -182,17 +182,73 @@
       "spot": 0,
       "quantity": 5,
       "MaxQuantity": 5,
-      "shelfId": 1,
-      "productId": 3,
-      "id": 2
+      "shelfId": 2,
+      "productId": 1,
+      "id": 7
     },
     {
       "spot": 0,
       "quantity": 5,
       "MaxQuantity": 5,
-      "shelfId": 8,
+      "shelfId": null,
+      "productId": 1,
+      "id": 8
+    },
+    {
+      "spot": 0,
+      "quantity": 5,
+      "MaxQuantity": 5,
+      "shelfId": null,
+      "productId": 1,
+      "id": 9
+    },
+    {
+      "spot": 0,
+      "quantity": 5,
+      "MaxQuantity": 5,
+      "shelfId": null,
+      "productId": 3,
+      "id": 12
+    },
+    {
+      "spot": 0,
+      "quantity": 5,
+      "MaxQuantity": 5,
+      "shelfId": null,
+      "productId": 3,
+      "id": 13
+    },
+    {
+      "spot": 0,
+      "quantity": 5,
+      "MaxQuantity": 5,
+      "shelfId": null,
+      "productId": 3,
+      "id": 14
+    },
+    {
+      "spot": 0,
+      "quantity": 5,
+      "MaxQuantity": 5,
+      "shelfId": null,
       "productId": 2,
-      "id": 3
+      "id": 15
+    },
+    {
+      "spot": 0,
+      "quantity": 5,
+      "MaxQuantity": 5,
+      "shelfId": 1,
+      "productId": 3,
+      "id": 16
+    },
+    {
+      "spot": 0,
+      "quantity": 5,
+      "MaxQuantity": 5,
+      "shelfId": 14,
+      "productId": 2,
+      "id": 17
     },
     {
       "spot": 0,
@@ -200,15 +256,7 @@
       "MaxQuantity": 5,
       "shelfId": 13,
       "productId": 2,
-      "id": 4
-    },
-    {
-      "spot": 0,
-      "quantity": 5,
-      "MaxQuantity": 5,
-      "shelfId": 2,
-      "productId": 2,
-      "id": 5
+      "id": 18
     }
   ],
   "products": [

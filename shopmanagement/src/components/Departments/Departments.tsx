@@ -2,7 +2,6 @@ import { Product } from "../../model/Product";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useDepartments } from "../../hooks/useDepartments";
 import { useState } from "react";
-import "../css/products.css";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";

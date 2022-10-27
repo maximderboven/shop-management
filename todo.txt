@@ -1,0 +1,7 @@
+- product toevoegen
+- product bewerken met properties
+- product verwijderen
+- Storedproduct bewerken
+- storedproduct modal bij aanmaken
+- switchen tussen users & condities over plaatsen
+- nog een uitbreiding
