@@ -11,18 +11,18 @@ import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { Search } from "@mui/icons-material";
-import { Input } from "@mui/material";
+import { Checkbox, FormControlLabel, FormGroup, Input } from "@mui/material";
 import "./css/products.css";
+import SwapVertIcon from "@mui/icons-material/SwapVert";
 
 export function Products() {
   const { isLoadingProducts, isErrorProducts, products } = useProducts();
+  const [search, setSearch] = useState("");
+  const [sort, setSort] = useState(true);
 
   const searchProducts = (e: any) => {
     const search = e.target.value;
-    const filteredProducts = products!.filter((product) => {
-      return product.name.toLowerCase().includes(search.toLowerCase());
-    });
-    console.log(filteredProducts);
+    setSearch(search);
   };
 
   if (isLoadingProducts) {
@@ -56,18 +56,55 @@ export function Products() {
       </Box>
       <Container sx={{ py: 8 }} maxWidth="md">
         <div className="topnav">
-          <div className="search-container">
-            <input type="text" placeholder="Search.." name="search" onChange={searchProducts}></input>
-          </div>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              p: 1,
+              m: 1,
+              borderRadius: 1,
+            }}
+          >
+            <FormGroup
+              style={{
+                display: "flex",
+                alignItems: "center",
+                flexWrap: "wrap",
+              }}
+            >
+              <FormControlLabel
+                control={<SwapVertIcon />}
+                label="Toon Discount"
+                onClick={() => setSort(!sort)}
+              />
+            </FormGroup>
+            <div className="search-container">
+              <input
+                type="text"
+                placeholder="Search.."
+                name="search"
+                onChange={searchProducts}
+              ></input>
+            </div>
+          </Box>
         </div>
       </Container>
       <Container maxWidth="md">
         <Grid container spacing={4}>
-          {products.map((product: Product) => (
-            <Grid item key={product.id} xs={12} sm={6} md={4}>
-              <ProductCard key={product.id} product={product} />
-            </Grid>
-          ))}
+          {products
+            .sort((a, b) =>
+              sort
+                ? Number(a.discount) - Number(b.discount)
+                : Number(b.discount) - Number(a.discount)
+            )
+            .filter((product) =>
+              product.name.toLowerCase().includes(search.toLowerCase())
+            )
+            .map((product: Product) => (
+              <Grid item key={product.id} xs={12} sm={6} md={4}>
+                <ProductCard key={product.id} product={product} />
+              </Grid>
+            ))}
         </Grid>
       </Container>
     </div>
