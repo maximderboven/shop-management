@@ -75,7 +75,7 @@ export function Stock({ product }: { product: ProductModel }) {
                                   {department.name}
                                 </Typography>
                                 <Link
-                                  to={`/floorplan/${department.id}`}
+                                  to={`/floorplan/${department.id}/${product.id}`}
                                   style={{
                                     display: "flex",
                                     justifyContent: "flex-end",

@@ -32,7 +32,7 @@ export function Floorplan({}) {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<number | null>(null);
   const [selectedShelf, setSelectedShelf] = useState<number | null>(null);
-  const { id } = useParams();
+  const { id,productId } = useParams();
   const { isErrorShelfsFromDepartment, isLoadingShelfsFromDepartment, shelfs } =
     useShelfsFromDepartment(id!);
   const {
@@ -141,7 +141,7 @@ export function Floorplan({}) {
                                 1 -
                                   storedproduct.quantity /
                                     storedproduct.MaxQuantity
-                              ) : "black",
+                              ) : (storedproduct.productId.toString() === productId) ? "Gold" : "black",
                             }}
                           >
                             {products.map((product) => {

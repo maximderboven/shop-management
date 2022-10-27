@@ -86,6 +86,7 @@ function App() {
               <Route path="/products/:id/edit" element={<EditProduct />} />
               <Route path="/products/create" element={<CreateProduct />} />
               <Route path="/floorplan/:id" element={<Floorplan />} />
+              <Route path="/floorplan/:id/:productId" element={<Floorplan />} />
               {email ? (
                 <Route path="/departments" element={<Departments />} />
               ) : null}

@@ -51,9 +51,12 @@ export function Departments() {
     return <Alert severity="error">Product does not exist</Alert>;
   } else if (isError || isErrorStoredProducts || isErrorShelfs) {
     return <Alert severity="error">Product could not be loaded</Alert>;
+  } else if (departments.length === 0) {
+    return <Alert severity="info">No departments found</Alert>;
+  } else if (!email) {
+    return (<Alert severity="info">You are not logged in</Alert>);
   } else {
     return (
-      email ? (
       <div>
         <Box
           sx={{
@@ -135,9 +138,6 @@ export function Departments() {
           </Grid>
         </Container>
       </div>
-    ) : (
-      null
-    )
     );
   }
 }
