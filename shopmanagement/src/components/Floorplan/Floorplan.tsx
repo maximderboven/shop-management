@@ -12,27 +12,59 @@ import Typography from "@mui/material/Typography";
 import { Button } from "@mui/material";
 import "./css/floorplan.css";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-import { Add } from "@mui/icons-material";
+import { Add, ConstructionOutlined, Stroller } from "@mui/icons-material";
 import { useProducts } from "../../hooks/useProducts";
 import { useShelfsFromDepartment } from "../../hooks/useShelfs";
-import {
-  useStoredProducts,
-  useStoredProductsFromShelfs,
-} from "../../hooks/useStoredProducts";
+import CancelIcon from "@mui/icons-material/Cancel";
+import { useStoredProducts } from "../../hooks/useStoredProducts";
+import { DraggableProduct } from "./DraggableProduct";
+import { getColor } from "../../utils/colorgrading";
+import { useDepartmentWithId } from "../../hooks/useDepartments";
+import { ShelfProduct, ShelfProductData } from "../../model/ShelfProduct";
 
-export function Floorplan() {
+export function Floorplan({}) {
   //const {innerWidth, innerHeight} = window;
   const { isLoadingProducts, isErrorProducts, products } = useProducts();
   const { id } = useParams();
   const { isErrorShelfsFromDepartment, isLoadingShelfsFromDepartment, shelfs } =
     useShelfsFromDepartment(id!);
-  const { isErrorStoredProducts, isLoadingStoredProducts, storedproducts } =
-    useStoredProducts();
+  const {
+    isErrorStoredProducts,
+    isLoadingStoredProducts,
+    storedproducts,
+    storeProductMutation,
+    deleteProductMutation
+  } = useStoredProducts();
+  const { isLoadingDepartmentWithId, isErrorDepartmentWithId, department } =
+    useDepartmentWithId(id!);
+
+  const storeProduct = (
+    data: ShelfProductData,
+    shelfId: number,
+    productId: number
+  ) => {
+    storeProductMutation({ ...data, shelfId, productId });
+  };
+
+  const deleteStoredProduct = (id: number) => {
+    deleteProductMutation(id);
+  };
 
   const onDragEnd = (result: any) => {
     if (!result.destination) {
       return;
     }
+    storeProduct(
+      {
+        spot: 0,
+        quantity: 5,
+        MaxQuantity: 5,
+      },
+      Number(result.destination.droppableId),
+      Number(result.draggableId)
+    );
+    console.log(result.source.index);
+    console.log(result.destination.droppableId);
   };
 
   if (
@@ -54,141 +86,113 @@ export function Floorplan() {
       <div className="wrapper bgimage">
         <DragDropContext onDragEnd={onDragEnd}>
           <div className="sidebar">
-            <Droppable droppableId="all-products" type="PRODUCT">
-              {(provided, snapshot) => {
-                return (
-                  console.log(products),
-                  (
-                    <div ref={provided.innerRef} {...provided.droppableProps}>
-                      {products?.map((product, index) => {
-                        return (
-                          <Draggable
-                            key={product.id}
-                            draggableId={product.id.toString()}
-                            index={index}
-                          >
-                            {(provided, snapshot) => {
-                              return (
-                                <div
-                                  ref={provided.innerRef}
-                                  {...provided.draggableProps}
-                                  {...provided.dragHandleProps}
-                                >
-                                  <Card
-                                    style={{
-                                      width: "90px",
-                                      height: "80px",
-                                      objectFit: "cover",
-                                    }}
-                                  >
-                                    <CardActionArea
-                                      href={`/products/${product.id}`}
-                                    >
-                                      <CardMedia
-                                        component="img"
-                                        height="140"
-                                        image={product.image}
-                                        alt={product.name}
-                                        style={{
-                                          width: "90px",
-                                          height: "50px",
-                                          objectFit: "cover",
-                                        }}
-                                      />
-                                      <CardContent>
-                                        <Typography
-                                          variant="body2"
-                                          color="text.secondary"
-                                        >
-                                          {product.name}
-                                        </Typography>
-                                      </CardContent>
-                                    </CardActionArea>
-                                  </Card>
-                                </div>
-                              );
-                            }}
-                          </Draggable>
-                        );
-                      })}
-                      {provided.placeholder}
-                    </div>
-                  )
-                );
-              }}
+            <Droppable droppableId="products">
+              {(provided) => (
+                <ul
+                  className="products"
+                  {...provided.droppableProps}
+                  ref={provided.innerRef}
+                >
+                  {products.map((product, index) => {
+                    return (
+                      <DraggableProduct product={product} index={product.id} />
+                    );
+                  })}
+                  {provided.placeholder}
+                </ul>
+              )}
             </Droppable>
           </div>
-          <div className="floorplan">
-            {shelfs.map((location) => {
-              <div
-                key={location.id}
-                style={{
-                  position: "absolute",
-                  bottom: (location.x / 936) * 100 + "%",
-                  left: (location.y / 1920) * 100 + "%",
-                  height: location.height,
-                  width: location.width,
-                  border: "5px solid black",
-                }}
-              >
-                {storedproducts?.map((storedproduct) => {
-                  if (storedproduct.shelfId === location.id) {
-                    products?.map((product) => {
-                      if (storedproduct.productId === product.id) {
+          <div className="main">
+            <Typography variant="h4">Floorplan: {department?.name} </Typography>
+            {shelfs.map((shelf) => {
+              return (
+                <>
+                  {/* Check shelf for a storedproduct
+                if it has -> get the product and make a div
+                if it has not -> make an empty div*/}
+                  {storedproducts!.filter(
+                    (storedproduct) => storedproduct.shelfId === shelf.id
+                  ).length > 0 ? (
+                    storedproducts!
+                      .filter(
+                        (storedproduct) => storedproduct.shelfId === shelf.id
+                      )
+                      .map((storedproduct) => {
                         return (
-                          <Draggable
-                            key={product.id}
-                            draggableId={product.id.toString()}
-                            index={index}
-                          >
-                            {(provided, snapshot) => {
-                              return (
-                                <div
-                                  ref={provided.innerRef}
-                                  {...provided.draggableProps}
-                                  {...provided.dragHandleProps}
-                                >
-                                  <Card
-                                    style={{
-                                      width: "90px",
-                                      height: "80px",
-                                      objectFit: "cover",
-                                    }}
-                                  >
-                                    <CardActionArea
-                                      href={`/products/${product.id}`}
-                                    >
-                                      <CardMedia
-                                        component="img"
-                                        height="140"
-                                        image={product.image}
-                                        alt={product.name}
-                                        style={{
-                                          width: "90px",
-                                          height: "50px",
-                                          objectFit: "cover",
-                                        }}
-                                      />
-                                      <CardContent>
-                                        <Typography
-                                          variant="body2"
-                                          color="text.secondary"
-                                        >
-                                          {product.name}
-                                        </Typography>
-                                      </CardContent>
-                                    </CardActionArea>
-                                  </Card>
-                                </div>
-                              );
+                          <div
+                            className="shelf"
+                            key={shelf.id}
+                            style={{
+                              position: "absolute",
+                              bottom: (shelf.x / 936) * 100 + "%",
+                              left: (shelf.y / 1920) * 100 + "%",
+                              height: shelf.height,
+                              width: shelf.width,
+                              border: "5px solid",
+                              borderColor: getColor(
+                                1 -
+                                  storedproduct.quantity /
+                                    storedproduct.MaxQuantity
+                              ),
                             }}
-                          </Draggable>
+                          >
+                            {products.map((product) => {
+                              if (product.id === storedproduct.productId) {
+                                return (
+                                  <div className="product">
+                                    <CancelIcon
+                                      onClick={() =>
+                                        deleteStoredProduct(storedproduct.id)
+                                      }
+                                      style={{
+                                        cursor: "pointer",
+                                        position: "absolute",
+                                        bottom: (shelf.x / 750) * 100 + "%",
+                                        right: -18,
+                                        color: "red",
+                                        zIndex: 100,
+                                      }}
+                                    />
+                                    <img
+                                      src={product?.image}
+                                      alt={product?.name}
+                                      style={{
+                                        position: "absolute",
+                                        height: shelf.height - 10,
+                                        width: shelf.width - 10,
+                                      }}
+                                    />
+                                  </div>
+                                );
+                              }
+                            })}
+                          </div>
                         );
-                      }
-                    });
-                  }
-                })}
-              </div>;
+                      })
+                  ) : (
+                    <Droppable droppableId={shelf.id.toString()}>
+                      {(provided) => (
+                        <div
+                          {...provided.droppableProps}
+                          ref={provided.innerRef}
+                          key={shelf.id}
+                          style={{
+                            position: "absolute",
+                            bottom: (shelf.x / 936) * 100 + "%",
+                            left: (shelf.y / 1920) * 100 + "%",
+                            height: shelf.height,
+                            width: shelf.width,
+                            border: "5px solid black",
+                          }}
+                        >
+                          {provided.placeholder}
+                        </div>
+                      )}
+                    </Droppable>
+                  )}
+                </>
+              );
             })}
           </div>
         </DragDropContext>

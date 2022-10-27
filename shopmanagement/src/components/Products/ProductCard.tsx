@@ -5,6 +5,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Product as Productmodel} from '../../model/Product';
 import { CardActionArea } from '@mui/material';
+import { Price } from './properties/Price';
 
 export function ProductCard({product }: {product: Productmodel}) {
   return (
@@ -22,6 +23,7 @@ export function ProductCard({product }: {product: Productmodel}) {
           </Typography>
           <Typography variant="body2" color="text.secondary">
             {product.description}
+            <Price product={product} />
           </Typography>
         </CardContent>
       </CardActionArea>

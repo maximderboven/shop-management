@@ -44,3 +44,7 @@ body{
   padding: 20px 0;
   transition: all 0.5s ease;
 }
+
+.main {
+  margin-left: 225px;
+}

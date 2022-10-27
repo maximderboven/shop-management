@@ -8,3 +8,5 @@ export interface ShelfProduct {
     quantity: number;
     MaxQuantity: number;
 }
+
+export type ShelfProductData = Omit<ShelfProduct, "id" | "productId" | "shelfId">;

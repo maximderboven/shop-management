@@ -24,7 +24,7 @@ import { Shelf } from "../../model/Shelf";
 import { StoredProductCard } from "../Products/StoredProductCard";
 
 export function Departments() {
-  const { isLoading, isError, departments } = useDepartments();
+  const { isLoadingDepartments:isLoading, isErrorDepartments:isError, departments } = useDepartments();
   const { isLoadingStoredProducts, isErrorStoredProducts, storedproducts } =
     useStoredProducts();
   const { isLoadingShelfs, isErrorShelfs, shelfs } = useShelfs();
