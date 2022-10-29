@@ -103,10 +103,10 @@ export function Products() {
         </div>
       </Container>
       <Container maxWidth="md">
-        <Grid container spacing={4}>
+        <Grid container spacing={4} alignItems="stretch">
           {loggedIn && role === Role.Admin && (
-            <Grid item key="add" xs={12} sm={6} md={4}>
-              <Paper elevation={1}>
+            <Grid item key="add" xs={12} sm={6} md={4} sx={{display: "flex", flexDirection: "column"}}>
+              <Paper elevation={1}  sx={{ height: "100%" }} >
                 <Box
                   m={1}
                   display="flex"
@@ -132,7 +132,7 @@ export function Products() {
               product.name.toLowerCase().includes(search.toLowerCase())
             )
             .map((product: Product) => (
-              <Grid item key={product.id} xs={12} sm={6} md={4}>
+              <Grid item key={product.id} xs={12} sm={6} md={4} sx={{display: "flex", flexDirection: "column"}}>
                 <ProductCard key={product.id} product={product} />
               </Grid>
             ))}

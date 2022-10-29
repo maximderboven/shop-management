@@ -41,6 +41,7 @@ export function DraggableProduct({product,index}: {product: Product, index: numb
                 width: "90px",
                 height: "80px",
                 objectFit: "cover",
+                margin: "5px" 
               }}
             >
               <CardActionArea href={`/products/${product.id}`}>

@@ -6,6 +6,7 @@ import {
   Box,
   Button,
   FormControlLabel,
+  Grid,
   IconButton,
   Switch,
   Toolbar,
@@ -27,6 +28,7 @@ import { useContext, useState } from "react";
 import UserContext, { IUserContext } from "./context/UserContext";
 import AccountManager from "./components/AccountManager";
 import { Role } from "./model/Role";
+import { Footer } from "./components/Footer";
 
 axios.defaults.baseURL = "http://localhost:3001";
 const queryClient = new QueryClient();
@@ -58,23 +60,28 @@ function App() {
                 color: "white",
               }}
             >
-              <Box
+              <Grid
                 sx={{
                   display: "flex",
+                  flexWrap: 'wrap',
                   justifyContent: "space-between",
                   borderRadius: 1,
                 }}
               >
-                <Toolbar>
-                  <IconButton onClick={handleDrawerToggle}>
-                    <MenuIcon style={{ color: "white" }} />
-                  </IconButton>
-                  <Typography variant="h6">UI3Shop</Typography>
-                </Toolbar>
-                <Toolbar>
-                  <AccountManager />
-                </Toolbar>
-              </Box>
+                <Grid item>
+                  <Toolbar>
+                    <IconButton onClick={handleDrawerToggle}>
+                      <MenuIcon style={{ color: "white" }} />
+                    </IconButton>
+                    <Typography variant="h6">UI3Shop</Typography>
+                  </Toolbar>
+                </Grid>
+                <Grid item>
+                  <Toolbar>
+                    <AccountManager />
+                  </Toolbar>
+                </Grid>
+              </Grid>
             </AppBar>
             <Navigation
               isOpen={drawerOpen}
@@ -93,6 +100,7 @@ function App() {
               <Route path="/about" element={<About />} />
             </Routes>
           </BrowserRouter>
+          {/* <Footer></Footer> */}
         </UserContextProvider>
       </QueryClientProvider>
     </>

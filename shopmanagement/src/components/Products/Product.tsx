@@ -44,7 +44,7 @@ export function Product() {
                 sx={{
                   pt: 2,
                   maxHeight: { xs: 333, md: 267 },
-                  maxWidth: { xs: 450, md: 350 },
+                  maxWidth: { xs: "100%", md: 350 },
                 }}
                 alt={product.name}
                 src={product.image}

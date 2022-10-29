@@ -1,6 +1,6 @@
 import { Shelf } from "../../model/Shelf";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { Alert, CircularProgress, Fab } from "@mui/material";
+import { Alert, Box, Chip, CircularProgress, Fab } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useState, useContext } from "react";
 import { useLocations } from "../../hooks/useShelf";
@@ -25,6 +25,7 @@ import AddStockDialog from "./AddStockDialog";
 import EditStockDialog from "./EditStockDialog";
 import UserContext, { IUserContext } from "../../context/UserContext";
 import { Role } from "../../model/Role";
+import { Price } from "../Products/properties/Price";
 
 export function Floorplan() {
   //const {innerWidth, innerHeight} = window;
@@ -33,7 +34,7 @@ export function Floorplan() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<number | null>(null);
   const [selectedShelf, setSelectedShelf] = useState<number | null>(null);
-  const { id,productId } = useParams();
+  const { id, productId } = useParams();
   const { isErrorShelfsFromDepartment, isLoadingShelfsFromDepartment, shelfs } =
     useShelfsFromDepartment(id!);
   const {
@@ -55,7 +56,7 @@ export function Floorplan() {
   };
 
   const editStoredProduct = (data: ShelfProduct) => {
-    storeProductMutation({ ...data});
+    storeProductMutation({ ...data });
   };
 
   const deleteStoredProduct = (id: number) => {
@@ -91,25 +92,31 @@ export function Floorplan() {
     return (
       <div className="wrapper bgimage">
         <DragDropContext onDragEnd={onDragEnd}>
-          {(loggedIn && (role === Role.Admin)) && (
-          <div className="sidebar">
-            <Droppable droppableId="products">
-              {(provided) => (
-                <ul
-                  className="products"
-                  {...provided.droppableProps}
-                  ref={provided.innerRef}
-                >
-                  {products.map((product, index) => {
-                    return (
-                      <DraggableProduct product={product} index={product.id} />
-                    );
-                  })}
-                  {provided.placeholder}
-                </ul>
-              )}
-            </Droppable>
-          </div>
+          {loggedIn && role === Role.Admin && (
+            <Box
+              className="sidebar"
+              style={{ overflow: "scroll" }}
+            >
+              <Droppable isDropDisabled={true} droppableId="products">
+                {(provided) => (
+                  <ul
+                    className="products"
+                    {...provided.droppableProps}
+                    ref={provided.innerRef}
+                  >
+                    {products.map((product, index) => {
+                      return (
+                        <DraggableProduct
+                          product={product}
+                          index={product.id}
+                        />
+                      );
+                    })}
+                    {provided.placeholder}
+                  </ul>
+                )}
+              </Droppable>
+            </Box>
           )}
           <div className="main">
             <Typography variant="h4">Floorplan: {department?.name} </Typography>
@@ -138,41 +145,71 @@ export function Floorplan() {
                               height: shelf.height,
                               width: shelf.width,
                               border: "5px solid",
-                              borderColor: (loggedIn && (role === Role.Admin)) ? getColor(
-                                1 -
-                                  storedproduct.quantity /
-                                    storedproduct.MaxQuantity
-                              ) : (storedproduct.productId.toString() === productId) ? "Gold" : "black",
+                              borderColor:
+                                loggedIn && role === Role.Admin
+                                  ? getColor(
+                                      1 -
+                                        storedproduct.quantity /
+                                          storedproduct.MaxQuantity
+                                    )
+                                  : storedproduct.productId.toString() ===
+                                    productId
+                                  ? "Gold"
+                                  : "black",
                             }}
                           >
                             {products.map((product) => {
                               if (product.id === storedproduct.productId) {
                                 return (
                                   <div className="product">
-                                    {(loggedIn && (role === Role.Admin)) && (
-                                    <CancelIcon
-                                      onClick={() =>
-                                        deleteStoredProduct(storedproduct.id)
-                                      }
-                                      style={{
-                                        cursor: "pointer",
-                                        position: "absolute",
-                                        bottom: (shelf.x / 750) * 100 + "%",
-                                        right: -18,
-                                        color: "red",
-                                        zIndex: 100,
-                                      }}
-                                    />
+                                    {loggedIn && role === Role.Admin && (
+                                      <CancelIcon
+                                        onClick={() =>
+                                          deleteStoredProduct(storedproduct.id)
+                                        }
+                                        style={{
+                                          cursor: "pointer",
+                                          position: "absolute",
+                                          bottom: (shelf.x / 750) * 100 + "%",
+                                          right: -18,
+                                          color: "red",
+                                          zIndex: 100,
+                                        }}
+                                      />
                                     )}
-                                    <img
-                                      src={product?.image}
-                                      alt={product?.name}
-                                      style={{
-                                        position: "absolute",
-                                        height: shelf.height - 10,
-                                        width: shelf.width - 10,
-                                      }}
-                                    />
+                                    <div className="wrap">
+                                      <img
+                                        src={product?.image}
+                                        alt={product?.name}
+                                        style={{
+                                          position: "absolute",
+                                          height: shelf.height - 10,
+                                          width: shelf.width - 10,
+                                        }}
+                                      />
+                                    </div>
+                                    <div className="text">
+                                      <span>
+                                        {product?.name}
+                                        <br />
+                                        <Price product={product} />
+                                        <br />
+                                        <Chip
+                                          style={{
+                                            backgroundColor: getColor(
+                                              1 -
+                                                storedproduct.quantity /
+                                                  storedproduct.MaxQuantity
+                                            ),
+                                          }}
+                                          label={
+                                            storedproduct.quantity +
+                                            "/" +
+                                            storedproduct.MaxQuantity
+                                          }
+                                        />
+                                      </span>
+                                    </div>
                                   </div>
                                 );
                               }

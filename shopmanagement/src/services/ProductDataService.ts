@@ -1,5 +1,6 @@
 import axios from "axios";
 import {Product} from "../model/Product";
+import { ProductProperty } from "../model/ProductProperty";
 import { Shelf } from "../model/Shelf";
 import { ShelfProduct } from "../model/ShelfProduct";
 
@@ -23,10 +24,15 @@ export const updateProduct = async (product: Product) => {
     return response.data;
 }
 
+
 export const deleteProduct = async (id: number) => {
-    const response = await axios.delete<Product>(`http://localhost:3001/products/${id}`);
-    const response2 = await axios.delete<ShelfProduct>(`http://localhost:3001/shelfProducts?productId=${id}`);
-    return response.data;
+    Promise.all([
+        axios.delete<Product>(`http://localhost:3001/products/${id}`),
+        axios.delete<ShelfProduct>(`http://localhost:3001/shelfProducts?productId=${id}`),
+        axios.delete<ProductProperty>(`http://localhost:3001/productproperties?productId=${id}`),
+    ]).then((values) => {
+        return values;
+    });
 }
 
 export const getStoredProductsFromProduct = async (product: number) => {

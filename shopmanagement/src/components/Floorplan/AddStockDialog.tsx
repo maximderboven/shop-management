@@ -7,6 +7,7 @@ import {
   DialogTitle,
   TextField,
 } from "@mui/material";
+import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { ShelfProductData } from "../../model/ShelfProduct";
 
@@ -70,6 +71,11 @@ export default function AddStockDialog({
                   value: 1,
                   message: MIN_LENGHT_MESSAGE(1),
                 },
+                maxLength: {
+                  value: 10,
+                  message: MIN_LENGHT_MESSAGE(3),
+                },
+                
               }}
               render={({ field }) => (
                 <TextField

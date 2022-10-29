@@ -9,7 +9,7 @@ import { Price } from './properties/Price';
 
 export function ProductCard({product }: {product: Productmodel}) {
   return (
-    <Card sx={{ display: 'flex', flexDirection: 'column' }} >
+    <Card sx={{ height: "100%"}} >
       <CardActionArea href={ `/products/${product.id}` }>
         <CardMedia
           component="img"
