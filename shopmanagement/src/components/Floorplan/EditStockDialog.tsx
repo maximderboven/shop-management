@@ -18,9 +18,7 @@ const MIN_LENGHT_MESSAGE = (length: number) =>
 interface AddItemDialogProps {
   isOpen: boolean;
   onClose: () => void;
-  onSubmit: (
-    data: ShelfProductData,
-  ) => void;
+  onSubmit: (data: ShelfProductData) => void;
   product: ShelfProduct;
 }
 
@@ -70,6 +68,7 @@ export default function EditStockDialog({
               }}
               render={({ field }) => (
                 <TextField
+                  defaultValue={product!.quantity}
                   {...field}
                   label="Quantity"
                   type="number"
@@ -94,6 +93,7 @@ export default function EditStockDialog({
               }}
               render={({ field }) => (
                 <TextField
+                  defaultValue={product!.MaxQuantity}
                   {...field}
                   label="MaxQuantity"
                   type="number"

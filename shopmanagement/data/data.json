@@ -647,7 +647,7 @@
     },
     {
       "quantity": "20",
-      "MaxQuantity": "20",
+      "MaxQuantity": "30",
       "id": 14,
       "shelfId": 13,
       "productId": 5
@@ -790,9 +790,9 @@
       "id": 8
     },
     {
-      "name": "Kaas",
+      "name": "Kazen",
       "description": "Kaas is een zuivelproduct met een vaste structuur. Door het toevoegen van stremsel en zuursel worden de vaste stoffen in de melk",
-      "price": "4.5",
+      "price": "5",
       "image": "https://zuivelonline.nl/media/uploads/2020/10/Kaas_weetjes1.jpg",
       "discount": true,
       "discountPercentage": "20",

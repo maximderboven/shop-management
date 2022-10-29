@@ -32,7 +32,7 @@ export function ProductManageOptions({ product }: { product: ProductModel }) {
           </Typography>
           <Divider />
           <Stack direction="row" spacing={2} sx={{ mt: 2 }}>
-            <Button variant="contained" color="primary">
+            <Button variant="contained" color="primary" onClick={() => navigate('edit')}>
               Edit
             </Button>
             <Button

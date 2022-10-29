@@ -23,13 +23,43 @@ export function useProduct(productId: string) {
         },
     });
 
+    const {
+        mutate: updateProductMutation,
+        isLoading: isUpdatingProduct,
+        isError: isUpdatingProductError,
+    } = useMutation(
+        (product:Product) => updateProduct(product),
+        {
+            onSuccess: () => {
+                queryClient.invalidateQueries(["products"]);
+            },
+        });
+
+    const {
+        mutate: createProductMutation,
+        isLoading: isCreatingProduct,
+        isError: isCreatingProductError,
+    } = useMutation(
+        (product:Product) => createProduct(product),
+        {
+            onSuccess: () => {
+                queryClient.invalidateQueries(["products"]);
+            },
+        });
+
     return {
-        isDeletingProduct,
-        isDeletingProductError,
-        deleteProductMutation,
         isLoading,
         isError,
         product,
+        deleteProductMutation,
+        isDeletingProduct,
+        isDeletingProductError,
+        updateProductMutation,
+        isUpdatingProduct,
+        isUpdatingProductError,
+        createProductMutation,
+        isCreatingProduct,
+        isCreatingProductError,
     };
 }
 
