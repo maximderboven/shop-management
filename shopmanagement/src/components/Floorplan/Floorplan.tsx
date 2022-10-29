@@ -170,8 +170,8 @@ export function Floorplan() {
                                         style={{
                                           cursor: "pointer",
                                           position: "absolute",
-                                          bottom: (shelf.x / 750) * 100 + "%",
-                                          right: -18,
+                                          top: 0,
+                                          right: 0,
                                           color: "red",
                                           zIndex: 100,
                                         }}
@@ -196,11 +196,11 @@ export function Floorplan() {
                                         <br />
                                         <Chip
                                           style={{
-                                            backgroundColor: getColor(
+                                            backgroundColor: (loggedIn && role === Role.Admin) ? getColor(
                                               1 -
                                                 storedproduct.quantity /
                                                   storedproduct.MaxQuantity
-                                            ),
+                                            ) : "white",
                                           }}
                                           label={
                                             storedproduct.quantity +
