@@ -1,6 +1,13 @@
 import { Shelf } from "../../model/Shelf";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { Alert, Box, Chip, CircularProgress, Fab } from "@mui/material";
+import {
+  Alert,
+  Box,
+  Chip,
+  CircularProgress,
+  Fab,
+  Snackbar,
+} from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useState, useContext } from "react";
 import { useLocations } from "../../hooks/useShelf";
@@ -26,13 +33,16 @@ import EditStockDialog from "./EditStockDialog";
 import UserContext, { IUserContext } from "../../context/UserContext";
 import { Role } from "../../model/Role";
 import { Price } from "../Products/properties/Price";
+import EditIcon from "@mui/icons-material/Edit";
 
 export function Floorplan() {
   //const {innerWidth, innerHeight} = window;
   const { loggedIn, role } = useContext<IUserContext>(UserContext);
   const { isLoadingProducts, isErrorProducts, products } = useProducts();
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
+  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<number | null>(null);
+  const [selectedShelfProduct, setSelectedShelfProduct] = useState<ShelfProduct | null>(null);
   const [selectedShelf, setSelectedShelf] = useState<number | null>(null);
   const { id, productId } = useParams();
   const { isErrorShelfsFromDepartment, isLoadingShelfsFromDepartment, shelfs } =
@@ -43,6 +53,9 @@ export function Floorplan() {
     storedproducts,
     storeProductMutation,
     deleteProductMutation,
+    isEditingStoredProduct,
+    editStoredProductMutation,
+    isErrorEditingStoredProduct,
   } = useStoredProducts();
   const { isLoadingDepartmentWithId, isErrorDepartmentWithId, department } =
     useDepartmentWithId(id!);
@@ -55,12 +68,19 @@ export function Floorplan() {
     storeProductMutation({ ...data, shelfId, productId });
   };
 
-  const editStoredProduct = (data: ShelfProduct) => {
-    storeProductMutation({ ...data });
+  const editStoredProduct = (data: ShelfProductData) => {
+    editStoredProductMutation({ ...data, id: selectedShelfProduct!.id, shelfId: selectedShelf!, productId: selectedProduct! });
   };
 
   const deleteStoredProduct = (id: number) => {
     deleteProductMutation(id);
+  };
+
+  const onClickEdit = (product: ShelfProduct) => {
+    setSelectedShelfProduct(product)
+    setSelectedProduct(product.productId)
+    setSelectedShelf(product.shelfId)
+    setIsEditDialogOpen(true);
   };
 
   const onDragEnd = (result: any) => {
@@ -69,7 +89,7 @@ export function Floorplan() {
     }
     setSelectedProduct(result.draggableId);
     setSelectedShelf(result.destination.droppableId);
-    setIsDialogOpen(true);
+    setIsAddDialogOpen(true);
     console.log(result.source.index);
     console.log(result.destination.droppableId);
   };
@@ -93,10 +113,7 @@ export function Floorplan() {
       <div className="wrapper bgimage">
         <DragDropContext onDragEnd={onDragEnd}>
           {loggedIn && role === Role.Admin && (
-            <Box
-              className="sidebar"
-              style={{ overflow: "scroll" }}
-            >
+            <Box className="sidebar" style={{ overflow: "scroll" }}>
               <Droppable isDropDisabled={true} droppableId="products">
                 {(provided) => (
                   <ul
@@ -194,20 +211,26 @@ export function Floorplan() {
                                         <br />
                                         <Price product={product} />
                                         <br />
-                                        <Chip
-                                          style={{
-                                            backgroundColor: (loggedIn && role === Role.Admin) ? getColor(
-                                              1 -
-                                                storedproduct.quantity /
-                                                  storedproduct.MaxQuantity
-                                            ) : "white",
-                                          }}
-                                          label={
-                                            storedproduct.quantity +
-                                            "/" +
-                                            storedproduct.MaxQuantity
-                                          }
-                                        />
+                                        {loggedIn && role === Role.Admin ? (
+                                          <Chip
+                                            onClick={() =>
+                                              onClickEdit(storedproduct)
+                                            }
+                                            icon={<EditIcon />}
+                                            style={{
+                                              backgroundColor: getColor(
+                                                1 -
+                                                  storedproduct.quantity /
+                                                    storedproduct.MaxQuantity
+                                              ),
+                                            }}
+                                            label={
+                                              storedproduct.quantity +
+                                              "/" +
+                                              storedproduct.MaxQuantity
+                                            }
+                                          />
+                                        ) : null}
                                       </span>
                                     </div>
                                   </div>
@@ -244,11 +267,17 @@ export function Floorplan() {
           </div>
         </DragDropContext>
         <AddStockDialog
-          isOpen={isDialogOpen}
-          onClose={() => setIsDialogOpen(false)}
+          isOpen={isAddDialogOpen}
+          onClose={() => setIsAddDialogOpen(false)}
           productId={selectedProduct!}
           shelfId={selectedShelf!}
           onSubmit={storeProduct}
+        />
+        <EditStockDialog
+          product={selectedShelfProduct!}
+          isOpen={isEditDialogOpen}
+          onClose={() => setIsEditDialogOpen(false)}
+          onSubmit={editStoredProduct}
         />
       </div>
     );

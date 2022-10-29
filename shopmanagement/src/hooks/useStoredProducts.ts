@@ -4,7 +4,8 @@ import {
   getStoredProductsFromProduct,
   getStoredProducts,
   storeProduct,
-  deleteStoredProduct
+  deleteStoredProduct,
+  updateStoredProduct,
 } from "../services/ProductDataService";
 
 export const useStoredProductsFromProduct = (productId: number) => {
@@ -57,6 +58,19 @@ export const useStoredProducts = () => {
       }
     );
 
+    const {
+      mutate : editStoredProductMutation,
+      isLoading: isEditingStoredProduct,
+      isError: isErrorEditingStoredProduct,
+    } = useMutation(
+      (shelfproduct: ShelfProduct) => updateStoredProduct(shelfproduct),
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries(["products"]);
+        },
+    }
+  );
+
   return {
     isLoadingStoredProducts,
     isErrorStoredProducts: isError,
@@ -67,7 +81,9 @@ export const useStoredProducts = () => {
     deleteProductMutation: deleteProductMutation,
     isDeletingStoredProduct,
     isErrorDeletingStoredProduct,
-
+    editStoredProductMutation: editStoredProductMutation,
+    isEditingStoredProduct,
+    isErrorEditingStoredProduct,
   };
 
   

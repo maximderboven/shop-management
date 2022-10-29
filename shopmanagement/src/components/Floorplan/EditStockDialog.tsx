@@ -21,12 +21,14 @@ interface AddItemDialogProps {
   onSubmit: (
     data: ShelfProductData,
   ) => void;
+  product: ShelfProduct;
 }
 
 export default function EditStockDialog({
   isOpen,
   onClose,
   onSubmit,
+  product,
 }: AddItemDialogProps) {
   const {
     control,
@@ -35,9 +37,9 @@ export default function EditStockDialog({
     formState: { errors },
   } = useForm({
     defaultValues: {
-      spot: 0,
-      quantity: 10,
-      MaxQuantity: 10,
+      spot: product?.spot,
+      quantity: product?.quantity,
+      MaxQuantity: product?.MaxQuantity,
     },
   });
 
@@ -50,7 +52,7 @@ export default function EditStockDialog({
   return (
     <Dialog open={isOpen} onClose={onClose}>
       <form onSubmit={handleSubmit(_onSubmit)}>
-        <DialogTitle>Add stock to storing product</DialogTitle>
+        <DialogTitle>Edit stock from </DialogTitle>
         <DialogContent>
           <div style={{ display: "flex", flexDirection: "column" }}>
             <Controller
@@ -71,6 +73,7 @@ export default function EditStockDialog({
                   {...field}
                   label="Quantity"
                   type="number"
+                  // value={product.quantity.toString()}
                   error={!!errors.quantity}
                   helperText={errors.quantity?.message}
                 />
@@ -94,6 +97,7 @@ export default function EditStockDialog({
                   {...field}
                   label="MaxQuantity"
                   type="number"
+                  // value={product.MaxQuantity.toString()}
                   error={!!errors.MaxQuantity}
                   helperText={errors.MaxQuantity?.message}
                 />
@@ -108,7 +112,7 @@ export default function EditStockDialog({
             Clear
           </Button>
           <Button type="submit" variant="contained">
-            Add
+            Update
           </Button>
         </DialogActions>
       </form>

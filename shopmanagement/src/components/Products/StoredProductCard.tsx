@@ -25,18 +25,18 @@ export function StoredProductCard({
     return <Alert severity="error">Product could not be loaded</Alert>;
   } else {
     return (
-      <Card sx={{ display: "flex", flexDirection: "column" }}>
+      <Card sx={{ height: "100%" }} >
         {products.map((product) => {
           if (product.id === storedproduct.productId) {
             return (
-              <CardActionArea href={`/products/${product.id}`} key={product.id}>
+              <CardActionArea href={`/products/${product.id}`} key={product.id} sx={{ height: "100%" }}>
                 <CardMedia
                   component="img"
                   height="140"
                   image={product.image}
                   alt={product.name}
                 />
-                <CardContent>
+                <CardContent >
                   <Typography gutterBottom variant="h5" component="div">
                     {product.name}
                   </Typography>
@@ -45,8 +45,10 @@ export function StoredProductCard({
                   </Typography>
                   <Typography
                     sx={{
+                      fontSize: 14,
                       pt: 6,
                       fontWeight: "bold",
+                      bottom: 0,
                     }}
                     variant="body2"
                     color={getColor(1-storedproduct.quantity/storedproduct.MaxQuantity)}
