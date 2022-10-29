@@ -6,6 +6,7 @@ import CategoryIcon from '@mui/icons-material/Category';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import {useContext} from "react";
 import UserContext, { IUserContext } from "../context/UserContext";
+import { Role } from "../model/Role";
 
 interface NavigationProps {
     isOpen: boolean;
@@ -13,14 +14,14 @@ interface NavigationProps {
 }
 
 export function Navigation({isOpen, onClose}: NavigationProps) {
-    const { email } = useContext<IUserContext>(UserContext);
+    const { loggedIn, role } = useContext<IUserContext>(UserContext);
     return (
         <div>
             <Drawer open={isOpen} onClose={onClose}>
                 <List sx={{width: 200}}>
                     {[
                         {label: "Products", link: "/products", icon: <ShoppingBasketIcon/>},
-                        (email) ? {label: "Departments", link: "/departments", icon: <CategoryIcon/> } : null,
+                        (loggedIn && (role === Role.Admin)) ? {label: "Departments", link: "/departments", icon: <CategoryIcon/> } : null,
                         {label: "Settings", link: "/settings", icon: <SettingsIcon/>},
                         {label: "About", link: "/about", icon: <AboutIcon/>},
                     ].map((menuItem) => (

@@ -13,12 +13,7 @@ export const getProduct = async (id: string) => {
     return response.data;
 }
 
-export const getProductsFromStoredProducts = async (id: number[]) => {
-    const response = await axios.get<Product[]>(`http://localhost:3001/products?id=${id.join("&id=")}`);
-    return response.data;
-}
-
-export const createProduct = async (product: Product) => {
+export const createProduct = async (product: Omit<Product, "id">) => {
     const response = await axios.post<Product>(`http://localhost:3001/products`, product);
     return response.data;
 }
@@ -30,21 +25,7 @@ export const updateProduct = async (product: Product) => {
 
 export const deleteProduct = async (id: number) => {
     const response = await axios.delete<Product>(`http://localhost:3001/products/${id}`);
-    return response.data;
-}
-
-export const getStoredProductOnShelf = async (shelfId: number) => {
-    const response = await axios.get<ShelfProduct[]>(`http://localhost:3001/shelfproducts?shelfId=${shelfId}`);
-    return response.data;
-}
-
-export const getStoredProductsOnShelfs = async (shelfs: number[]) => {
-    const response = await axios.get<ShelfProduct[]>(`http://localhost:3001/shelfproducts?shelfId=${shelfs.map(shelf => shelf).join("&shelfid=")}`);
-    return response.data;
-}
-
-export const getStoredProductsFromProducts = async (products: number[]) => {
-    const response = await axios.get<ShelfProduct[]>(`http://localhost:3001/shelfproducts?productId=${products.map(product => product).join("&productId=")}`);
+    const response2 = await axios.delete<ShelfProduct>(`http://localhost:3001/shelfProducts?productId=${id}`);
     return response.data;
 }
 

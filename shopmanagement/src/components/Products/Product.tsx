@@ -16,6 +16,7 @@ import { getColor } from "../../utils/colorgrading";
 import { Properties } from "./properties/Properties";
 import { Price } from "./properties/Price";
 import { Stock } from "./properties/Stock";
+import { ProductManageOptions } from "./properties/ProductManageOptions";
 
 export function Product() {
   const { id } = useParams();
@@ -49,11 +50,12 @@ export function Product() {
                 src={product.image}
               />
             </Grid>
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} md={6}>
+              <ProductManageOptions product={product} />
               <Properties />
             </Grid>
             <Grid item xs={12} md={10}>
-            <Stock product={product} />
+              <Stock product={product} />
             </Grid>
             {/* End sidebar */}
           </Grid>

@@ -179,14 +179,6 @@
   ],
   "shelfproducts": [
     {
-      "spot": 0,
-      "quantity": 5,
-      "MaxQuantity": 5,
-      "shelfId": 2,
-      "productId": 1,
-      "id": 7
-    },
-    {
       "spot": "1",
       "quantity": "1",
       "MaxQuantity": 10,
@@ -207,18 +199,17 @@
       "shelfId": 1,
       "productId": 3,
       "id": 11
+    },
+    {
+      "spot": 0,
+      "quantity": 10,
+      "MaxQuantity": 10,
+      "shelfId": 2,
+      "productId": 2,
+      "id": 12
     }
   ],
   "products": [
-    {
-      "id": 1,
-      "name": "Milk",
-      "price": 10.5,
-      "description": "Milk is essentially an emulsion of fat and protein in water, along with dissolved sugar (carbohydrate), minerals, and vitamins.",
-      "image": "https://img.freepik.com/free-photo/fresh-milk-mug-jug-wooden-table_114579-18233.jpg",
-      "discount": true,
-      "discountPercentage": 10
-    },
     {
       "id": 2,
       "name": "Bread",

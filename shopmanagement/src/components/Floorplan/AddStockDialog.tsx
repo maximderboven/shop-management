@@ -10,7 +10,6 @@ import {
 import { Controller, useForm } from "react-hook-form";
 import { ShelfProductData } from "../../model/ShelfProduct";
 
-// TODO validate URL fields and add icon andornments
 const REQUIRED_FIELD_MESSAGE = "This field is required";
 const MIN_LENGHT_MESSAGE = (length: number) =>
   `Please enter minimum ${length} characters.`;

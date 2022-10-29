@@ -12,7 +12,6 @@ import UserContext, { IUserContext } from "../context/UserContext";
 import AccountManager from "./AccountManager";
 
 export default function Settings() {
-  const { email, login } = useContext<IUserContext>(UserContext);
   return (
     <div className="settings">
       <h2>Settings</h2>

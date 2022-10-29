@@ -26,6 +26,7 @@ import UserContextProvider from "./context/UserContextProvider";
 import { useContext, useState } from "react";
 import UserContext, { IUserContext } from "./context/UserContext";
 import AccountManager from "./components/AccountManager";
+import { Role } from "./model/Role";
 
 axios.defaults.baseURL = "http://localhost:3001";
 const queryClient = new QueryClient();
@@ -33,7 +34,7 @@ const queryClient = new QueryClient();
 function App() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [title, setTitle] = useState("UI3SHOP");
-  const { email } = useContext<IUserContext>(UserContext);
+  const { loggedIn, role } = useContext<IUserContext>(UserContext);
 
   const handleDrawerToggle = () => {
     setDrawerOpen(!drawerOpen);
@@ -87,9 +88,7 @@ function App() {
               <Route path="/products/create" element={<CreateProduct />} />
               <Route path="/floorplan/:id" element={<Floorplan />} />
               <Route path="/floorplan/:id/:productId" element={<Floorplan />} />
-              {email ? (
-                <Route path="/departments" element={<Departments />} />
-              ) : null}
+              <Route path="/departments" element={<Departments />} />
               <Route path="/settings" element={<Settings />} />
               <Route path="/about" element={<About />} />
             </Routes>

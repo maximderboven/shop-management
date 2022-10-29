@@ -1,60 +1,11 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { ShelfProduct } from "../model/ShelfProduct";
 import {
-  getStoredProductsOnShelfs,
-  getStoredProductOnShelf,
-  getStoredProductsFromProducts,
   getStoredProductsFromProduct,
   getStoredProducts,
   storeProduct,
   deleteStoredProduct
 } from "../services/ProductDataService";
-
-export const useStoredProductsFromShelf = (shelfId: number) => {
-  const queryClient = useQueryClient();
-  const {
-    isLoading,
-    isError,
-    data: products,
-  } = useQuery(["products", shelfId], () => getStoredProductOnShelf(shelfId));
-  return {
-    isLoading,
-    isError,
-    products,
-  };
-};
-
-export const useStoredProductsFromShelfs = (shelfIds: number[]) => {
-  const queryClient = useQueryClient();
-  const {
-    isLoading,
-    isError,
-    data: products,
-  } = useQuery(["products", shelfIds.join(",")], () =>
-    getStoredProductsOnShelfs(shelfIds)
-  );
-  return {
-    isLoadingStoredProductsFromShelfs: isLoading,
-    isErrorStoredProductsFromShelfs: isError,
-    storedproductsfromshelfs: products,
-  };
-};
-
-export const useStoredProductsFromProducts = (productIds: number[]) => {
-  const queryClient = useQueryClient();
-  const {
-    isLoading,
-    isError,
-    data: products,
-  } = useQuery(["products", productIds.join(",")], () =>
-    getStoredProductsFromProducts(productIds)
-  );
-  return {
-    isLoading,
-    isError,
-    products,
-  };
-};
 
 export const useStoredProductsFromProduct = (productId: number) => {
   const queryClient = useQueryClient();

@@ -16,8 +16,7 @@ import { Add } from "@mui/icons-material";
 import { useProducts } from "../../hooks/useProducts";
 import { useShelfsFromDepartment } from "../../hooks/useShelfs";
 import {
-  useStoredProducts,
-  useStoredProductsFromShelfs,
+  useStoredProducts
 } from "../../hooks/useStoredProducts";
 import { Product } from "../../model/Product";
 

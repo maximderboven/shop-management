@@ -26,16 +26,3 @@ export function useShelfsFromDepartment(departmentId: string) {
     isErrorShelfsFromDepartment: error,
   };
 }
-
-export function useShelfsFromDepartments(departments: number[]) {
-  const queryClient = useQueryClient();
-  const { data, isLoading, error } = useQuery(
-    ["shelfs", departments.join(",")],
-    () => getShelfsFromDepartments(departments)
-  );
-  return {
-    shelfs: data,
-    isLoading,
-    error,
-  };
-}

@@ -10,12 +10,26 @@ import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { Search } from "@mui/icons-material";
-import { Checkbox, FormControlLabel, FormGroup, Input } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import {
+  Alert,
+  Checkbox,
+  CircularProgress,
+  Divider,
+  FormControlLabel,
+  FormGroup,
+  Input,
+  Paper,
+} from "@mui/material";
 import "./css/products.css";
 import SwapVertIcon from "@mui/icons-material/SwapVert";
+import { useContext } from "react";
+import UserContext, { IUserContext } from "../../context/UserContext";
+import { Role } from "../../model/Role";
 
 export function Products() {
   const { isLoadingProducts, isErrorProducts, products } = useProducts();
+  const { loggedIn, role } = useContext<IUserContext>(UserContext);
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState(true);
 
@@ -25,11 +39,11 @@ export function Products() {
   };
 
   if (isLoadingProducts) {
-    return <div>Loading...</div>;
+    return <CircularProgress />;
   }
 
   if (isErrorProducts || products == null) {
-    return <div>Error</div>;
+    return <Alert severity="error">Error loading products</Alert>;
   }
 
   return (
@@ -90,6 +104,24 @@ export function Products() {
       </Container>
       <Container maxWidth="md">
         <Grid container spacing={4}>
+          {loggedIn && role === Role.Admin && (
+            <Grid item key="add" xs={12} sm={6} md={4}>
+              <Paper elevation={1}>
+                <Box
+                  m={1}
+                  display="flex"
+                  justifyContent="center"
+                  alignItems="center"
+                  sx={{ height: 300 }}
+                >
+                  <Button variant="contained" href="/products/create">
+                    <AddIcon />
+                  </Button>
+                </Box>
+              </Paper>
+            </Grid>
+          )}
+
           {products
             .sort((a, b) =>
               sort

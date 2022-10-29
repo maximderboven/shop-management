@@ -1,11 +1,18 @@
 import { createContext } from "react";
+import { Role } from "../model/Role";
 
 export interface IUserContext {
-  email: boolean;
-  login: () => void;
+  loggedIn: boolean;
+  email: string;
+  role: Role;
+  login: (email: string, role: Role) => void;
+  logout: () => void;
 }
 
 export default createContext<IUserContext>({
-  email: true,
+  loggedIn: false,
+  email: "",
+  role: Role.Guest,
   login: () => {},
+  logout: () => {}
 });

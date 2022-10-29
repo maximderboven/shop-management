@@ -12,8 +12,7 @@ import { Alert, CircularProgress, Divider } from "@mui/material";
 import { ProductCard } from "../Products/ProductCard";
 import { Link } from "react-router-dom";
 import {
-  useStoredProducts,
-  useStoredProductsFromShelfs,
+  useStoredProducts
 } from "../../hooks/useStoredProducts";
 import { useProducts } from "../../hooks/useProducts";
 import { useShelfs } from "../../hooks/useShelfs";
@@ -24,9 +23,10 @@ import { StoredProductCard } from "../Products/StoredProductCard";
 import './css/departments.css'
 import {useContext} from "react";
 import UserContext, { IUserContext } from "../../context/UserContext";
+import { Role } from "../../model/Role";
 
 export function Departments() {
-  const { email } = useContext<IUserContext>(UserContext);
+  const { loggedIn, role } = useContext<IUserContext>(UserContext);
   const { isLoadingDepartments:isLoading, isErrorDepartments:isError, departments } = useDepartments();
   const { isLoadingStoredProducts, isErrorStoredProducts, storedproducts } =
     useStoredProducts();
@@ -53,7 +53,7 @@ export function Departments() {
     return <Alert severity="error">Product could not be loaded</Alert>;
   } else if (departments.length === 0) {
     return <Alert severity="info">No departments found</Alert>;
-  } else if (!email) {
+  } else if (!(loggedIn && (role === Role.Admin))) {
     return (<Alert severity="info">You are not logged in</Alert>);
   } else {
     return (

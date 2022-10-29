@@ -24,10 +24,11 @@ import { ShelfProduct, ShelfProductData } from "../../model/ShelfProduct";
 import AddStockDialog from "./AddStockDialog";
 import EditStockDialog from "./EditStockDialog";
 import UserContext, { IUserContext } from "../../context/UserContext";
+import { Role } from "../../model/Role";
 
-export function Floorplan({}) {
+export function Floorplan() {
   //const {innerWidth, innerHeight} = window;
-  const { email } = useContext<IUserContext>(UserContext);
+  const { loggedIn, role } = useContext<IUserContext>(UserContext);
   const { isLoadingProducts, isErrorProducts, products } = useProducts();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<number | null>(null);
@@ -90,7 +91,7 @@ export function Floorplan({}) {
     return (
       <div className="wrapper bgimage">
         <DragDropContext onDragEnd={onDragEnd}>
-          {(email) && (
+          {(loggedIn && (role === Role.Admin)) && (
           <div className="sidebar">
             <Droppable droppableId="products">
               {(provided) => (
@@ -137,7 +138,7 @@ export function Floorplan({}) {
                               height: shelf.height,
                               width: shelf.width,
                               border: "5px solid",
-                              borderColor: (email) ? getColor(
+                              borderColor: (loggedIn && (role === Role.Admin)) ? getColor(
                                 1 -
                                   storedproduct.quantity /
                                     storedproduct.MaxQuantity
@@ -148,7 +149,7 @@ export function Floorplan({}) {
                               if (product.id === storedproduct.productId) {
                                 return (
                                   <div className="product">
-                                    {(email) && (
+                                    {(loggedIn && (role === Role.Admin)) && (
                                     <CancelIcon
                                       onClick={() =>
                                         deleteStoredProduct(storedproduct.id)

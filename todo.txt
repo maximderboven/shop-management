@@ -2,5 +2,4 @@
 - product bewerken met properties
 - product verwijderen
 - Storedproduct bewerken
-- switchen tussen users & condities over plaatsen
 - nog een uitbreiding

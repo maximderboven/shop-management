@@ -18,10 +18,11 @@ import { useShelfs } from "../../../hooks/useShelfs";
 import { useDepartments } from "../../../hooks/useDepartments";
 import { useContext } from "react";
 import UserContext, { IUserContext } from "../../../context/UserContext";
+import { Role } from "../../../model/Role";
 
 
 export function Stock({ product }: { product: ProductModel }) {
-  const { email } = useContext<IUserContext>(UserContext);
+  const { loggedIn, role } = useContext<IUserContext>(UserContext);
   const { isLoading, isError, storedproducts } = useStoredProductsFromProduct(
     product.id
   );
@@ -58,7 +59,7 @@ export function Stock({ product }: { product: ProductModel }) {
                                   justifyContent: "space-between",
                                   p: 1,
                                   m: 1,
-                                  bgcolor: (email) ? getColor(
+                                  bgcolor: (loggedIn && (role === Role.Admin)) ? getColor(
                                     1 -
                                       storedproduct.quantity /
                                         storedproduct.MaxQuantity

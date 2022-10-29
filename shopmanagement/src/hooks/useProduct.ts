@@ -11,10 +11,41 @@ export function useProduct(productId: string) {
         data: product,
     } = useQuery(["product"], () => getProduct(productId));
 
+    const {
+        mutate: deleteProductMutation,
+        isLoading: isDeletingProduct,
+        isError: isDeletingProductError,
+    } = useMutation(
+        (productId:number) => deleteProduct(productId),
+        {
+        onSuccess: () => {
+            queryClient.invalidateQueries(["products"]);
+        },
+    });
+
     return {
+        isDeletingProduct,
+        isDeletingProductError,
+        deleteProductMutation,
         isLoading,
         isError,
         product,
     };
+}
 
+export function useAddProduct() {
+    const queryClient = useQueryClient();
+    const {mutateAsync, isLoading, isError} = useMutation(
+        (product: Omit<Product,"id">) => createProduct(product),
+        {
+        onSuccess: () => {
+            queryClient.invalidateQueries(["products"]);
+        },
+    });
+
+    return {
+        storeProductMutation: mutateAsync,
+        isLoading,
+        isError,
+    };
 }
