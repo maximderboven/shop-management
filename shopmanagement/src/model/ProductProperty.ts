@@ -7,3 +7,5 @@ export interface ProductProperty {
     propertyId: number;
     value: string;
 }
+
+export type ProductPropertyItem = Omit<ProductProperty, "id">;

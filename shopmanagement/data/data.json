@@ -646,7 +646,7 @@
       "id": 13
     },
     {
-      "quantity": "20",
+      "quantity": "15",
       "MaxQuantity": "30",
       "id": 14,
       "shelfId": 13,
@@ -741,8 +741,8 @@
       "price": 30.5,
       "description": "A banana is a curved, yellow fruit with a thick skin and soft sweet flesh.",
       "image": "https://w7.pngwing.com/pngs/55/75/png-transparent-graphy-banana-fruit-footage-berry-golden-banana-food-golden-frame-orange.png",
-      "discount": false,
-      "discountPercentage": 10
+      "discount": true,
+      "discountPercentage": "25"
     },
     {
       "name": "Capri Sun",
@@ -895,6 +895,24 @@
       "productId": 3,
       "propertyId": 3,
       "value": "Yellow"
+    },
+    {
+      "productId": 5,
+      "propertyId": 2,
+      "value": "1kg",
+      "id": 2
+    },
+    {
+      "productId": 5,
+      "propertyId": 5,
+      "value": "Round",
+      "id": 3
+    },
+    {
+      "productId": 11,
+      "propertyId": 8,
+      "value": "Stinky Eggs",
+      "id": 4
     }
   ],
   "properties": [

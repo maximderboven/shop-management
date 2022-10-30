@@ -68,10 +68,11 @@ export function EditProduct() {
     }
     if (isError) {
       return <Alert severity="error">Error</Alert>;
-    } else {
+    } else  if (product) {
       return (
         <>
           <Box sx={{ maxWidth: 600, mx: "auto", mt: "2rem" }}>
+            
             <form onSubmit={handleSubmit(_onSubmit)}>
               <Typography variant="h4">Update Product</Typography>
               <Grid style={{ display: "flex", flexDirection: "column" }}>
@@ -160,7 +161,7 @@ export function EditProduct() {
                 <Controller
                   name="discount"
                   control={control}
-                  render={({ field }) => <Switch {...field} color="primary" />}
+                  render={({ field }) => <Switch defaultChecked={product.discount} {...field} color="primary" />}
                 />
                 <Controller
                   name="discountPercentage"
@@ -178,6 +179,7 @@ export function EditProduct() {
                       type="number"
                       label="Discount Percentage"
                       variant="outlined"
+                      defaultValue={0}
                       error={!!errors.discountPercentage}
                       helperText={errors.discountPercentage?.message}
                     />
@@ -231,6 +233,8 @@ export function EditProduct() {
           </Box>
         </>
       );
+    } else {
+      return <Alert severity="error">Error</Alert>;
     }
   } else {
     return (
