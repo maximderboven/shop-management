@@ -641,21 +641,6 @@
       "spot": 0,
       "quantity": 10,
       "MaxQuantity": 10,
-      "shelfId": 1,
-      "productId": 3,
-      "id": 13
-    },
-    {
-      "quantity": "15",
-      "MaxQuantity": "30",
-      "id": 14,
-      "shelfId": 13,
-      "productId": 5
-    },
-    {
-      "spot": 0,
-      "quantity": 10,
-      "MaxQuantity": 10,
       "shelfId": 20,
       "productId": 6,
       "id": 16
@@ -723,6 +708,22 @@
       "shelfId": 3,
       "productId": 7,
       "id": 24
+    },
+    {
+      "spot": 0,
+      "quantity": 10,
+      "MaxQuantity": 10,
+      "shelfId": 1,
+      "productId": 4,
+      "id": 25
+    },
+    {
+      "spot": 0,
+      "quantity": 10,
+      "MaxQuantity": 10,
+      "shelfId": 13,
+      "productId": 5,
+      "id": 26
     }
   ],
   "products": [
@@ -790,7 +791,7 @@
       "id": 8
     },
     {
-      "name": "Kazen",
+      "name": "Kaas",
       "description": "Kaas is een zuivelproduct met een vaste structuur. Door het toevoegen van stremsel en zuursel worden de vaste stoffen in de melk",
       "price": "5",
       "image": "https://zuivelonline.nl/media/uploads/2020/10/Kaas_weetjes1.jpg",
@@ -897,22 +898,28 @@
       "value": "Yellow"
     },
     {
-      "productId": 5,
-      "propertyId": 2,
-      "value": "1kg",
-      "id": 2
+      "productId": 11,
+      "propertyId": 8,
+      "value": "Stinky Eggs",
+      "id": 4
     },
     {
       "productId": 5,
       "propertyId": 5,
       "value": "Round",
-      "id": 3
+      "id": 5
     },
     {
-      "productId": 11,
-      "propertyId": 8,
-      "value": "Stinky Eggs",
-      "id": 4
+      "productId": 5,
+      "propertyId": 3,
+      "value": "Orange",
+      "id": 6
+    },
+    {
+      "productId": 5,
+      "propertyId": 7,
+      "value": "Skinny",
+      "id": 7
     }
   ],
   "properties": [

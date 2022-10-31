@@ -6,6 +6,7 @@ import {
   Chip,
   CircularProgress,
   Fab,
+  Grid,
   Snackbar,
 } from "@mui/material";
 import { useParams } from "react-router-dom";
@@ -110,10 +111,10 @@ export function Floorplan() {
     return <Alert severity="error">Error while loading product</Alert>;
   } else {
     return (
-      <div className="wrapper bgimage">
+      <Grid container className="wrapper bgimage">
         <DragDropContext onDragEnd={onDragEnd}>
           {loggedIn && role === Role.Admin && (
-            <Box className="sidebar" style={{ overflow: "scroll" }}>
+            <Grid item sm={2} sx={{ display: { xs: 'none', sm: 'block' } }} className="sidebar">
               <Droppable isDropDisabled={true} droppableId="products">
                 {(provided) => (
                   <ul
@@ -133,9 +134,9 @@ export function Floorplan() {
                   </ul>
                 )}
               </Droppable>
-            </Box>
+            </Grid>
           )}
-          <div className="main">
+          <Grid item sm={10} xs={12} className="main">
             <Typography variant="h4">Floorplan: {department?.name} </Typography>
             {shelfs.map((shelf) => {
               return (
@@ -159,8 +160,8 @@ export function Floorplan() {
                               position: "absolute",
                               bottom: (shelf.x / 936) * 100 + "%",
                               left: (shelf.y / 1920) * 100 + "%",
-                              height: shelf.height,
-                              width: shelf.width,
+                              height: shelf.height / 936 * 100 + "%",
+                              width: shelf.width / 1920 * 100 + "%",
                               border: "5px solid",
                               borderColor:
                                 loggedIn && role === Role.Admin
@@ -200,8 +201,8 @@ export function Floorplan() {
                                         alt={product?.name}
                                         style={{
                                           position: "absolute",
-                                          height: shelf.height - 10,
-                                          width: shelf.width - 10,
+                                          height: "100%",
+                                          width: "100%",
                                         }}
                                       />
                                     </div>
@@ -251,8 +252,8 @@ export function Floorplan() {
                             position: "absolute",
                             bottom: (shelf.x / 936) * 100 + "%",
                             left: (shelf.y / 1920) * 100 + "%",
-                            height: shelf.height,
-                            width: shelf.width,
+                            height: shelf.height / 936 * 100 + "%",
+                            width: shelf.width / 1920 * 100 + "%",
                             border: "5px solid black",
                           }}
                         >
@@ -264,7 +265,7 @@ export function Floorplan() {
                 </>
               );
             })}
-          </div>
+          </Grid>
         </DragDropContext>
         <AddStockDialog
           isOpen={isAddDialogOpen}
@@ -279,7 +280,7 @@ export function Floorplan() {
           onClose={() => setIsEditDialogOpen(false)}
           onSubmit={editStoredProduct}
         />
-      </div>
+      </Grid>
     );
   }
 }

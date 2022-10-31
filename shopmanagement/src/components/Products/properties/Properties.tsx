@@ -42,6 +42,8 @@ export function Properties() {
     isDeletingProductPropertyError,
   } = useProductProperties(id!);
   const [isEditing, setIsEditing] = useState(false);
+  /* Still error: when nothing is selected it gives null when trying to add 
+  Fix: add 'Select one' option to select or set first id as selected state*/
   const [selectedProperty, setSelectedProperty] = useState<string | null>(null);
   const [selectedValue, setSelectedValue] = useState<string | null>(null);
   const { loggedIn, role } = useContext<IUserContext>(UserContext);
@@ -118,6 +120,7 @@ export function Properties() {
                   value={selectedProperty}
                   onChange={(e) => setSelectedProperty(e.target.value)}
                 >
+                  <option aria-label="None" value="" >Select an option</option>
                   {properties.map(
                     (property) =>
                       productProperties.find(
