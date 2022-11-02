@@ -7,6 +7,7 @@ import {
   CircularProgress,
   Fab,
   Grid,
+  Paper,
   Snackbar,
 } from "@mui/material";
 import { useParams } from "react-router-dom";
@@ -35,6 +36,9 @@ import UserContext, { IUserContext } from "../../context/UserContext";
 import { Role } from "../../model/Role";
 import { Price } from "../Products/properties/Price";
 import EditIcon from "@mui/icons-material/Edit";
+import HelpIcon from '@mui/icons-material/Help';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
 
 export function Floorplan() {
   //const {innerWidth, innerHeight} = window;
@@ -126,6 +130,20 @@ export function Floorplan() {
               sx={{ display: { xs: "none", sm: "block" } }}
               className="sidebar"
             >
+              <Paper sx={{ width:"calc(100% - 10px)", margin: "5px" }}>
+                <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+
+                <Typography variant="h6" sx={{ margin: "5px" }}>
+                  Products
+                </Typography>
+                <Tooltip title="Drag and drop products on the floorplan to place them into the store.">
+                  <IconButton aria-label="help">
+                    <HelpIcon />
+                  </IconButton>
+                </Tooltip>
+                </Box>
+
+              </Paper>
               <Droppable isDropDisabled={true} droppableId="products">
                 {(provided) => (
                   <ul
@@ -148,7 +166,9 @@ export function Floorplan() {
             </Grid>
           )}
           <Grid item sm={10} xs={12} className="main">
-            <Typography variant="h4">Department: {department?.name} </Typography>
+            <Typography variant="h4">
+              Department: {department?.name}{" "}
+            </Typography>
             {shelfs.map((shelf) => {
               return (
                 <>

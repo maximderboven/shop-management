@@ -8,6 +8,7 @@ import {
   Box,
   Button,
   CircularProgress,
+  Divider,
   Grid,
   Switch,
   TextField,
@@ -20,6 +21,7 @@ import { useAddProduct, useProduct } from "../../hooks/useProduct";
 import { useNavigate, useParams } from "react-router-dom";
 import { useProperties } from "../../hooks/useProperties";
 import { useEffect } from "react";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const REQUIRED_FIELDMESSAGE = "This field is required";
 const MIN_LENGTHMESSAGE = (length: number) =>
@@ -72,12 +74,31 @@ export function EditProduct() {
       return (
         <>
           <Box sx={{ maxWidth: 600, mx: "auto", mt: "2rem" }}>
-            <a href={'/products/' + id} >
-              Terug
-            </a>
+          <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                p: 1,
+                borderRadius: 1,
+              }}
+            >
+                            <Button
+                            sx={{ mr: "1rem" }}
+                variant="outlined"
+                startIcon={<ArrowBackIcon />}
+                onClick={() => {
+                  navigate("/products/" + id);
+                }}
+              >
+                Back
+              </Button>
+              <Typography variant="h4" component="h1">
+                Edit Product
+              </Typography>
+            </Box>
+            <Divider />
             
             <form onSubmit={handleSubmit(_onSubmit)}>
-              <Typography variant="h4">Update Product</Typography>
               <Grid style={{ display: "flex", flexDirection: "column" }}>
                 <Controller
                   name="name"

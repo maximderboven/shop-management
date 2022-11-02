@@ -687,7 +687,7 @@
     },
     {
       "spot": 0,
-      "quantity": 10,
+      "quantity": "10",
       "MaxQuantity": 10,
       "shelfId": 3,
       "productId": 7,
@@ -695,26 +695,11 @@
     },
     {
       "spot": 0,
-      "quantity": 10,
-      "MaxQuantity": 10,
-      "shelfId": 1,
-      "productId": 4,
-      "id": 25
-    },
-    {
-      "spot": 0,
-      "quantity": 10,
+      "quantity": "10",
       "MaxQuantity": 10,
       "shelfId": 13,
       "productId": 5,
       "id": 26
-    },
-    {
-      "quantity": "10",
-      "MaxQuantity": "10",
-      "id": 27,
-      "shelfId": 8,
-      "productId": 10
     },
     {
       "spot": 0,
@@ -725,19 +710,20 @@
       "id": 28
     },
     {
-      "quantity": "30",
-      "MaxQuantity": "50",
-      "id": 29,
-      "shelfId": 11,
-      "productId": 8
-    },
-    {
       "spot": 0,
       "quantity": 10,
       "MaxQuantity": 10,
       "shelfId": 20,
       "productId": 6,
       "id": 30
+    },
+    {
+      "spot": 0,
+      "quantity": 10,
+      "MaxQuantity": "20",
+      "shelfId": 11,
+      "productId": 16,
+      "id": 31
     }
   ],
   "products": [
@@ -934,6 +920,12 @@
       "propertyId": 7,
       "value": "Skinny",
       "id": 7
+    },
+    {
+      "productId": 5,
+      "propertyId": 6,
+      "value": "Appelsienig",
+      "id": 8
     }
   ],
   "properties": [

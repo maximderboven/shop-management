@@ -7,6 +7,7 @@ import {
   Alert,
   Box,
   Button,
+  Divider,
   Grid,
   Switch,
   TextField,
@@ -18,6 +19,7 @@ import { createProduct } from "../../services/ProductDataService";
 import { useAddProduct, useProduct } from "../../hooks/useProduct";
 import { useNavigate } from "react-router-dom";
 import { useProperties } from "../../hooks/useProperties";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const REQUIRED_FIELDMESSAGE = "This field is required";
 const MIN_LENGTHMESSAGE = (length: number) =>
@@ -25,7 +27,11 @@ const MIN_LENGTHMESSAGE = (length: number) =>
 
 export function CreateProduct() {
   const { storeProductMutation, isLoading, isError } = useAddProduct();
-  const { isLoading:isLoadingProperties, isError:isErrorloadingProperties, properties } = useProperties();
+  const {
+    isLoading: isLoadingProperties,
+    isError: isErrorloadingProperties,
+    properties,
+  } = useProperties();
   const [isSuccessful, setIsSuccessful] = useState(false);
   const { loggedIn, role } = useContext<IUserContext>(UserContext);
   const navigate = useNavigate();
@@ -61,11 +67,30 @@ export function CreateProduct() {
     return (
       <>
         <Box sx={{ maxWidth: 600, mx: "auto", mt: "2rem" }}>
-        <a href={'/products/'} >
-              Terug
-            </a>
           <form onSubmit={handleSubmit(_onSubmit)}>
-            <Typography variant="h4">Create Product</Typography>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                p: 1,
+                borderRadius: 1,
+              }}
+            >
+                            <Button
+                            sx={{ mr: "1rem" }}
+                variant="outlined"
+                startIcon={<ArrowBackIcon />}
+                onClick={() => {
+                  navigate("/products");
+                }}
+              >
+                Back
+              </Button>
+              <Typography variant="h4" component="h1">
+                Create Product
+              </Typography>
+            </Box>
+            <Divider></Divider>
             <Grid style={{ display: "flex", flexDirection: "column" }}>
               <Controller
                 name="name"

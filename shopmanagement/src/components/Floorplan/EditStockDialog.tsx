@@ -8,6 +8,7 @@ import {
   TextField,
 } from "@mui/material";
 import { Controller, useForm } from "react-hook-form";
+import { useEffect } from "react";
 import { ShelfProduct, ShelfProductData } from "../../model/ShelfProduct";
 
 // TODO validate URL fields and add icon andornments
@@ -46,6 +47,10 @@ export default function EditStockDialog({
     reset();
     onClose();
   };
+
+  useEffect(() => {
+    reset(product);
+  }, [product]);
 
   return (
     <Dialog open={isOpen} onClose={onClose}>
