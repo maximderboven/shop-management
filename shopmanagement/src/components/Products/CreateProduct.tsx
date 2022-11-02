@@ -61,6 +61,9 @@ export function CreateProduct() {
     return (
       <>
         <Box sx={{ maxWidth: 600, mx: "auto", mt: "2rem" }}>
+        <a href={'/products/'} >
+              Terug
+            </a>
           <form onSubmit={handleSubmit(_onSubmit)}>
             <Typography variant="h4">Create Product</Typography>
             <Grid style={{ display: "flex", flexDirection: "column" }}>

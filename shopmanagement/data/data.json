@@ -641,25 +641,9 @@
       "spot": 0,
       "quantity": 10,
       "MaxQuantity": 10,
-      "shelfId": 20,
-      "productId": 6,
-      "id": 16
-    },
-    {
-      "spot": 0,
-      "quantity": 10,
-      "MaxQuantity": 10,
       "shelfId": 23,
       "productId": 8,
       "id": 17
-    },
-    {
-      "spot": 0,
-      "quantity": 10,
-      "MaxQuantity": 10,
-      "shelfId": 30,
-      "productId": 10,
-      "id": 18
     },
     {
       "spot": 0,
@@ -724,6 +708,36 @@
       "shelfId": 13,
       "productId": 5,
       "id": 26
+    },
+    {
+      "quantity": "10",
+      "MaxQuantity": "10",
+      "id": 27,
+      "shelfId": 8,
+      "productId": 10
+    },
+    {
+      "spot": 0,
+      "quantity": 10,
+      "MaxQuantity": 10,
+      "shelfId": 37,
+      "productId": 10,
+      "id": 28
+    },
+    {
+      "quantity": "30",
+      "MaxQuantity": "50",
+      "id": 29,
+      "shelfId": 11,
+      "productId": 8
+    },
+    {
+      "spot": 0,
+      "quantity": 10,
+      "MaxQuantity": 10,
+      "shelfId": 20,
+      "productId": 6,
+      "id": 30
     }
   ],
   "products": [
@@ -755,7 +769,7 @@
       "id": 4
     },
     {
-      "name": "Sinaasappel",
+      "name": "Orange",
       "description": "De sinaasappel (ook wel appelsien genoemd) is de vrucht van de sinaasappelboom (Citrus sinensis), die tot het geslacht Citrus behoort.",
       "price": "0.5",
       "image": "https://stichtingaromatherapie.nl/wp-content/uploads/2020/09/Sinaasappel.jpg",
@@ -801,7 +815,7 @@
     },
     {
       "name": "Melk",
-      "description": "Melk is een vloeistof (een emulsie van vetdruppels in water) die door vrouwelijke zoogdieren wordt geproduceerd die net een nakomeling hebben gebaard",
+      "description": "Melk is een vloeistof (een emulsie van vetdruppels in water) die door vrouwelijke zoogdieren wordt geproduceerd die net een nakomeling hebben gebaard.",
       "price": "2",
       "image": "https://cdn.carrefour.eu/300_05121192_5400101020856_00.jpeg",
       "discount": false,

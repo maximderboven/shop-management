@@ -72,6 +72,9 @@ export function EditProduct() {
       return (
         <>
           <Box sx={{ maxWidth: 600, mx: "auto", mt: "2rem" }}>
+            <a href={'/products/' + id} >
+              Terug
+            </a>
             
             <form onSubmit={handleSubmit(_onSubmit)}>
               <Typography variant="h4">Update Product</Typography>

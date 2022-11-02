@@ -43,7 +43,8 @@ export function Floorplan() {
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<number | null>(null);
-  const [selectedShelfProduct, setSelectedShelfProduct] = useState<ShelfProduct | null>(null);
+  const [selectedShelfProduct, setSelectedShelfProduct] =
+    useState<ShelfProduct | null>(null);
   const [selectedShelf, setSelectedShelf] = useState<number | null>(null);
   const { id, productId } = useParams();
   const { isErrorShelfsFromDepartment, isLoadingShelfsFromDepartment, shelfs } =
@@ -70,7 +71,12 @@ export function Floorplan() {
   };
 
   const editStoredProduct = (data: ShelfProductData) => {
-    editStoredProductMutation({ ...data, id: selectedShelfProduct!.id, shelfId: selectedShelf!, productId: selectedProduct! });
+    editStoredProductMutation({
+      ...data,
+      id: selectedShelfProduct!.id,
+      shelfId: selectedShelf!,
+      productId: selectedProduct!,
+    });
   };
 
   const deleteStoredProduct = (id: number) => {
@@ -78,9 +84,9 @@ export function Floorplan() {
   };
 
   const onClickEdit = (product: ShelfProduct) => {
-    setSelectedShelfProduct(product)
-    setSelectedProduct(product.productId)
-    setSelectedShelf(product.shelfId)
+    setSelectedShelfProduct(product);
+    setSelectedProduct(product.productId);
+    setSelectedShelf(product.shelfId);
     setIsEditDialogOpen(true);
   };
 
@@ -114,7 +120,12 @@ export function Floorplan() {
       <Grid container className="wrapper bgimage">
         <DragDropContext onDragEnd={onDragEnd}>
           {loggedIn && role === Role.Admin && (
-            <Grid item sm={2} sx={{ display: { xs: 'none', sm: 'block' } }} className="sidebar">
+            <Grid
+              item
+              sm={2}
+              sx={{ display: { xs: "none", sm: "block" } }}
+              className="sidebar"
+            >
               <Droppable isDropDisabled={true} droppableId="products">
                 {(provided) => (
                   <ul
@@ -137,7 +148,7 @@ export function Floorplan() {
             </Grid>
           )}
           <Grid item sm={10} xs={12} className="main">
-            <Typography variant="h4">Floorplan: {department?.name} </Typography>
+            <Typography variant="h4">Department: {department?.name} </Typography>
             {shelfs.map((shelf) => {
               return (
                 <>
@@ -160,8 +171,8 @@ export function Floorplan() {
                               position: "absolute",
                               bottom: (shelf.x / 936) * 100 + "%",
                               left: (shelf.y / 1920) * 100 + "%",
-                              height: shelf.height / 936 * 100 + "%",
-                              width: shelf.width / 1920 * 100 + "%",
+                              height: (shelf.height / 936) * 100 + "%",
+                              width: (shelf.width / 1920) * 100 + "%",
                               border: "5px solid",
                               borderColor:
                                 loggedIn && role === Role.Admin
@@ -185,6 +196,9 @@ export function Floorplan() {
                                         onClick={() =>
                                           deleteStoredProduct(storedproduct.id)
                                         }
+                                        sx={{
+                                          display: { xs: "none", sm: "block" },
+                                        }}
                                         style={{
                                           cursor: "pointer",
                                           position: "absolute",
@@ -225,6 +239,12 @@ export function Floorplan() {
                                                     storedproduct.MaxQuantity
                                               ),
                                             }}
+                                            sx={{
+                                              display: {
+                                                xs: "none",
+                                                sm: "block",
+                                              },
+                                            }}
                                             label={
                                               storedproduct.quantity +
                                               "/" +
@@ -252,8 +272,8 @@ export function Floorplan() {
                             position: "absolute",
                             bottom: (shelf.x / 936) * 100 + "%",
                             left: (shelf.y / 1920) * 100 + "%",
-                            height: shelf.height / 936 * 100 + "%",
-                            width: shelf.width / 1920 * 100 + "%",
+                            height: (shelf.height / 936) * 100 + "%",
+                            width: (shelf.width / 1920) * 100 + "%",
                             border: "5px solid black",
                           }}
                         >
