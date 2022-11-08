@@ -85,6 +85,4 @@ export const useStoredProducts = () => {
     isEditingStoredProduct,
     isErrorEditingStoredProduct,
   };
-
-  
 }

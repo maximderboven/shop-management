@@ -1,12 +1,6 @@
 import { Product as ProductModel } from "../../../model/Product";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { Alert, CardMedia, CircularProgress, Fab } from "@mui/material";
-import { useParams } from "react-router-dom";
-import { useState } from "react";
-import Grid from "@mui/material/Grid";
-import Container from "@mui/material/Container";
+import { Alert, CircularProgress, Fab } from "@mui/material";
 import Typography from "@mui/material/Typography";
-import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
@@ -30,7 +24,7 @@ export function Stock({ product }: { product: ProductModel }) {
   const { isLoadingDepartments, isErrorDepartments, departments } =
     useDepartments();
 
-  if (isLoading) {
+  if (isLoading || isLoadingShelfs || isLoadingDepartments) {
     return <CircularProgress />;
   } else if (!storedproducts || !shelfs || !departments) {
     return <Alert severity="error">Product does not exist</Alert>;

@@ -687,14 +687,6 @@
     },
     {
       "spot": 0,
-      "quantity": "7",
-      "MaxQuantity": 10,
-      "shelfId": 3,
-      "productId": 7,
-      "id": 24
-    },
-    {
-      "spot": 0,
       "quantity": "10",
       "MaxQuantity": 10,
       "shelfId": 13,
@@ -719,11 +711,19 @@
     },
     {
       "spot": 0,
-      "quantity": 10,
-      "MaxQuantity": "20",
+      "quantity": "1",
+      "MaxQuantity": "5",
+      "shelfId": 3,
+      "productId": 7,
+      "id": 32
+    },
+    {
+      "spot": 0,
+      "quantity": "5",
+      "MaxQuantity": 10,
       "shelfId": 11,
-      "productId": 16,
-      "id": 31
+      "productId": 8,
+      "id": 33
     }
   ],
   "products": [

@@ -1,24 +1,19 @@
 import { Product } from "../../model/Product";
-import { useMutation, useQuery } from "@tanstack/react-query";
 import { useProducts } from "../../hooks/useProducts";
 import { useState } from "react";
 import { ProductCard } from "./ProductCard";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
-import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import { Search } from "@mui/icons-material";
 import AddIcon from "@mui/icons-material/Add";
 import {
   Alert,
   Checkbox,
   CircularProgress,
-  Divider,
   FormControlLabel,
   FormGroup,
-  Input,
   Paper,
 } from "@mui/material";
 import "./css/products.css";

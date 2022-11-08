@@ -1,12 +1,9 @@
-import * as React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { ShelfProduct } from "../../model/ShelfProduct";
 import { CardActionArea } from "@mui/material";
-import { Link } from "react-router-dom";
-import { Product } from "../../model/Product";
 import { useProducts } from "../../hooks/useProducts";
 import { Alert, CircularProgress } from "@mui/material";
 import { getColor } from "../../utils/colorgrading";
@@ -25,18 +22,23 @@ export function StoredProductCard({
     return <Alert severity="error">Product could not be loaded</Alert>;
   } else {
     return (
-      <Card sx={{ height: "100%" }} >
-        {products.map((product) => {
-          if (product.id === storedproduct.productId) {
+      <Card sx={{ height: "100%" }}>
+        {products
+          .filter((product) => product.id === storedproduct.productId)
+          .map((product) => {
             return (
-              <CardActionArea href={`/products/${product.id}`} key={product.id} sx={{ height: "100%" }}>
+              <CardActionArea
+                href={`/products/${product.id}`}
+                key={product.id}
+                sx={{ height: "100%" }}
+              >
                 <CardMedia
                   component="img"
                   height="140"
                   image={product.image}
                   alt={product.name}
                 />
-                <CardContent >
+                <CardContent>
                   <Typography gutterBottom variant="h5" component="div">
                     {product.name}
                   </Typography>
@@ -51,7 +53,9 @@ export function StoredProductCard({
                       bottom: 0,
                     }}
                     variant="body2"
-                    color={getColor(1-storedproduct.quantity/storedproduct.MaxQuantity)}
+                    color={getColor(
+                      1 - storedproduct.quantity / storedproduct.MaxQuantity
+                    )}
                   >
                     STOCK: {storedproduct.quantity} /{" "}
                     {storedproduct.MaxQuantity}
@@ -59,8 +63,7 @@ export function StoredProductCard({
                 </CardContent>
               </CardActionArea>
             );
-          }
-        })}
+          })}
       </Card>
     );
   }

@@ -2,7 +2,6 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   getShelfs,
   getShelfsFromDepartment,
-  getShelfsFromDepartments,
 } from "../services/ShelfDataService";
 
 export function useShelfs() {

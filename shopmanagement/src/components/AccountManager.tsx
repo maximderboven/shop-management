@@ -1,10 +1,10 @@
-import { Button, FormControlLabel, Switch, Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { useContext } from "react";
 import UserContext, { IUserContext } from "../context/UserContext";
 import { Role } from "../model/Role";
 
 export default function AccountManager() {
-  const { loggedIn, email, role, login, logout } = useContext<IUserContext>(UserContext);
+  const { loggedIn, email, login, logout } = useContext<IUserContext>(UserContext);
   return (
     <>
       {/* <FormControlLabel

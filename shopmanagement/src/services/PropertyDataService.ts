@@ -20,11 +20,6 @@ export const createProductProperty = async (productProperty: Omit<ProductPropert
     return response.data;
 }
 
-export const updateProductProperty = async (productProperty: ProductProperty) => {
-    const response = await axios.put<ProductProperty>(`http://localhost:3001/productproperties/${productProperty.id}`, productProperty);
-    return response.data;
-}
-
 export const deleteProductProperty = async (id: number) => {
     const response = await axios.delete<ProductProperty>(`http://localhost:3001/productproperties/${id}`);
     return response.data;

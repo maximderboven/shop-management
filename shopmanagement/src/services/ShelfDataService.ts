@@ -10,8 +10,3 @@ export const getShelfsFromDepartment = async (departmentId: string) => {
     const response = await axios.get<Shelf[]>(`http://localhost:3001/shelfs?departmentId=${departmentId}`);
     return response.data;
 }
-
-export const getShelfsFromDepartments = async (departments: number[]) => {
-    const response = await axios.get<Shelf[]>(`http://localhost:3001/shelfs?departmentId=${departments.join("&departmentId=")}`);
-    return response.data;
-}

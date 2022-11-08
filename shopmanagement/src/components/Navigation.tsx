@@ -1,5 +1,4 @@
 import {Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText} from "@mui/material";
-import BoardsIcon from "@mui/icons-material/Dashboard";
 import SettingsIcon from '@mui/icons-material/Settings';
 import AboutIcon from "@mui/icons-material/InfoOutlined";
 import CategoryIcon from '@mui/icons-material/Category';

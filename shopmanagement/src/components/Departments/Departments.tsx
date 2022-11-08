@@ -1,22 +1,15 @@
-import { Product } from "../../model/Product";
-import { useMutation, useQuery } from "@tanstack/react-query";
 import { useDepartments } from "../../hooks/useDepartments";
-import { useState } from "react";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
-import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { Alert, CircularProgress, Divider } from "@mui/material";
-import { ProductCard } from "../Products/ProductCard";
 import { Link } from "react-router-dom";
 import {
   useStoredProducts
 } from "../../hooks/useStoredProducts";
-import { useProducts } from "../../hooks/useProducts";
 import { useShelfs } from "../../hooks/useShelfs";
-import { Department } from "../../model/Department";
 import { ShelfProduct } from "../../model/ShelfProduct";
 import { Shelf } from "../../model/Shelf";
 import { StoredProductCard } from "../Products/StoredProductCard";

@@ -1,44 +1,29 @@
-import { Shelf } from "../../model/Shelf";
-import { useMutation, useQuery } from "@tanstack/react-query";
 import {
   Alert,
   Box,
-  Chip,
   CircularProgress,
-  Fab,
   Grid,
   Paper,
-  Snackbar,
 } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useState, useContext } from "react";
-import { useLocations } from "../../hooks/useShelf";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import CardActionArea from "@mui/material/CardActionArea";
 import Typography from "@mui/material/Typography";
-import { Button } from "@mui/material";
 import "./css/floorplan.css";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-import { Add, ConstructionOutlined, Stroller } from "@mui/icons-material";
 import { useProducts } from "../../hooks/useProducts";
 import { useShelfsFromDepartment } from "../../hooks/useShelfs";
-import CancelIcon from "@mui/icons-material/Cancel";
 import { useStoredProducts } from "../../hooks/useStoredProducts";
 import { DraggableProduct } from "./DraggableProduct";
-import { getColor } from "../../utils/colorgrading";
 import { useDepartmentWithId } from "../../hooks/useDepartments";
 import { ShelfProduct, ShelfProductData } from "../../model/ShelfProduct";
 import AddStockDialog from "./AddStockDialog";
 import EditStockDialog from "./EditStockDialog";
 import UserContext, { IUserContext } from "../../context/UserContext";
 import { Role } from "../../model/Role";
-import { Price } from "../Products/properties/Price";
-import EditIcon from "@mui/icons-material/Edit";
-import HelpIcon from '@mui/icons-material/Help';
-import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
+import HelpIcon from "@mui/icons-material/Help";
+import IconButton from "@mui/material/IconButton";
+import Tooltip from "@mui/material/Tooltip";
+import { ShelfOnFloorplan } from "./ShelfOnFloorplan";
 
 export function Floorplan() {
   //const {innerWidth, innerHeight} = window;
@@ -47,21 +32,16 @@ export function Floorplan() {
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<number | null>(null);
-  const [selectedShelfProduct, setSelectedShelfProduct] =
-    useState<ShelfProduct | null>(null);
+  const [selectedShelfProduct, setSelectedShelfProduct] = useState<ShelfProduct | null>(null);
   const [selectedShelf, setSelectedShelf] = useState<number | null>(null);
   const { id, productId } = useParams();
-  const { isErrorShelfsFromDepartment, isLoadingShelfsFromDepartment, shelfs } =
-    useShelfsFromDepartment(id!);
+  const { isErrorShelfsFromDepartment, isLoadingShelfsFromDepartment, shelfs } = useShelfsFromDepartment(id!);
   const {
     isErrorStoredProducts,
     isLoadingStoredProducts,
     storedproducts,
     storeProductMutation,
-    deleteProductMutation,
-    isEditingStoredProduct,
     editStoredProductMutation,
-    isErrorEditingStoredProduct,
   } = useStoredProducts();
   const { isLoadingDepartmentWithId, isErrorDepartmentWithId, department } =
     useDepartmentWithId(id!);
@@ -83,10 +63,6 @@ export function Floorplan() {
     });
   };
 
-  const deleteStoredProduct = (id: number) => {
-    deleteProductMutation(id);
-  };
-
   const onClickEdit = (product: ShelfProduct) => {
     setSelectedShelfProduct(product);
     setSelectedProduct(product.productId);
@@ -105,6 +81,7 @@ export function Floorplan() {
 
   if (
     isLoadingProducts ||
+    isLoadingDepartmentWithId ||
     isLoadingShelfsFromDepartment ||
     isLoadingStoredProducts
   ) {
@@ -113,6 +90,7 @@ export function Floorplan() {
     return <Alert severity="error">Product does not exist</Alert>;
   } else if (
     isErrorProducts ||
+    isErrorDepartmentWithId ||
     isErrorShelfsFromDepartment ||
     isErrorStoredProducts
   ) {
@@ -128,19 +106,17 @@ export function Floorplan() {
               sx={{ display: { xs: "none", sm: "block" } }}
               className="sidebar"
             >
-              <Paper sx={{ width:"calc(100% - 10px)", margin: "5px" }}>
+              <Paper sx={{ width: "calc(100% - 10px)", margin: "5px" }}>
                 <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-
-                <Typography variant="h6" sx={{ margin: "5px" }}>
-                  Products
-                </Typography>
-                <Tooltip title="Drag and drop products on the floorplan to place them into the store.">
-                  <IconButton aria-label="help">
-                    <HelpIcon />
-                  </IconButton>
-                </Tooltip>
+                  <Typography variant="h6" sx={{ margin: "5px" }}>
+                    Products
+                  </Typography>
+                  <Tooltip title="Drag and drop products on the floorplan to place them into the store.">
+                    <IconButton aria-label="help">
+                      <HelpIcon />
+                    </IconButton>
+                  </Tooltip>
                 </Box>
-
               </Paper>
               <Droppable isDropDisabled={true} droppableId="products">
                 {(provided) => (
@@ -170,9 +146,6 @@ export function Floorplan() {
             {shelfs.map((shelf) => {
               return (
                 <>
-                  {/* Check shelf for a storedproduct
-                if it has -> get the product and make a div
-                if it has not -> make an empty div*/}
                   {storedproducts!.filter(
                     (storedproduct) => storedproduct.shelfId === shelf.id
                   ).length > 0 ? (
@@ -182,101 +155,13 @@ export function Floorplan() {
                       )
                       .map((storedproduct) => {
                         return (
-                          <div
-                            className="shelf"
-                            key={shelf.id}
-                            style={{
-                              position: "absolute",
-                              bottom: (shelf.x / 936) * 100 + "%",
-                              left: (shelf.y / 1920) * 100 + "%",
-                              height: (shelf.height / 936) * 100 + "%",
-                              width: (shelf.width / 1920) * 100 + "%",
-                              border: "5px solid",
-                              borderColor:
-                                loggedIn && role === Role.Admin
-                                  ? getColor(
-                                      1 -
-                                        storedproduct.quantity /
-                                          storedproduct.MaxQuantity
-                                    )
-                                  : storedproduct.productId.toString() ===
-                                    productId
-                                  ? "Gold"
-                                  : "black",
-                            }}
-                          >
-                            {products.map((product) => {
-                              if (product.id === storedproduct.productId) {
-                                return (
-                                  <div className="product">
-                                    {loggedIn && role === Role.Admin && (
-                                      <CancelIcon
-                                        onClick={() =>
-                                          deleteStoredProduct(storedproduct.id)
-                                        }
-                                        sx={{
-                                          display: { xs: "none", sm: "block" },
-                                        }}
-                                        style={{
-                                          cursor: "pointer",
-                                          position: "absolute",
-                                          top: 0,
-                                          right: 0,
-                                          color: "red",
-                                          zIndex: 100,
-                                        }}
-                                      />
-                                    )}
-                                    <div className="wrap">
-                                      <img
-                                        src={product?.image}
-                                        alt={product?.name}
-                                        style={{
-                                          position: "absolute",
-                                          height: "100%",
-                                          width: "100%",
-                                        }}
-                                      />
-                                    </div>
-                                    <div className="text">
-                                      <span>
-                                        {product?.name}
-                                        <br />
-                                        <Price product={product} />
-                                        <br />
-                                        {loggedIn && role === Role.Admin ? (
-                                          <Chip
-                                            onClick={() =>
-                                              onClickEdit(storedproduct)
-                                            }
-                                            icon={<EditIcon />}
-                                            style={{
-                                              backgroundColor: getColor(
-                                                1 -
-                                                  storedproduct.quantity /
-                                                    storedproduct.MaxQuantity
-                                              ),
-                                            }}
-                                            sx={{
-                                              display: {
-                                                xs: "none",
-                                                sm: "block",
-                                              },
-                                            }}
-                                            label={
-                                              storedproduct.quantity +
-                                              "/" +
-                                              storedproduct.MaxQuantity
-                                            }
-                                          />
-                                        ) : null}
-                                      </span>
-                                    </div>
-                                  </div>
-                                );
-                              }
-                            })}
-                          </div>
+                          <ShelfOnFloorplan
+                            shelf={shelf}
+                            storedproduct={storedproduct}
+                            products={products}
+                            selectedproduct={productId}
+                            onClickEdit={onClickEdit}
+                          />
                         );
                       })
                   ) : (

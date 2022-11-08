@@ -1,4 +1,3 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import UserContext, { IUserContext } from "../../context/UserContext";
 import { Role } from "../../model/Role";
@@ -15,10 +14,8 @@ import {
 } from "@mui/material";
 import { Controller, useForm } from "react-hook-form";
 import { ProductItem } from "../../model/Product";
-import { createProduct } from "../../services/ProductDataService";
-import { useAddProduct, useProduct } from "../../hooks/useProduct";
+import { useAddProduct } from "../../hooks/useProduct";
 import { useNavigate } from "react-router-dom";
-import { useProperties } from "../../hooks/useProperties";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const REQUIRED_FIELDMESSAGE = "This field is required";
@@ -27,11 +24,6 @@ const MIN_LENGTHMESSAGE = (length: number) =>
 
 export function CreateProduct() {
   const { storeProductMutation, isLoading, isError } = useAddProduct();
-  const {
-    isLoading: isLoadingProperties,
-    isError: isErrorloadingProperties,
-    properties,
-  } = useProperties();
   const [isSuccessful, setIsSuccessful] = useState(false);
   const { loggedIn, role } = useContext<IUserContext>(UserContext);
   const navigate = useNavigate();
