@@ -12,8 +12,11 @@ import { Controller, useForm } from "react-hook-form";
 import { ShelfProductData } from "../../model/ShelfProduct";
 
 const REQUIRED_FIELD_MESSAGE = "This field is required";
-const MIN_LENGHT_MESSAGE = (length: number) =>
-  `Please enter minimum ${length} characters.`;
+const MINLENGTH = 'Please enter a digit greater than 0';
+const MAXLENGTHQUANTITY = (length: number) =>
+  `Please enter a value less than the MaxQuantity of ${length}.`;
+const MINLENGTHMAXQUANTITY = (length: number) =>
+  `Please enter a value greater than the Quantity of ${length}.`;
 
 interface AddItemDialogProps {
   isOpen: boolean;
@@ -39,6 +42,7 @@ export default function AddStockDialog({
     handleSubmit,
     reset,
     formState: { errors },
+    watch,
   } = useForm({
     defaultValues: {
       spot: 0,
@@ -68,12 +72,12 @@ export default function AddStockDialog({
                   message: REQUIRED_FIELD_MESSAGE,
                 },
                 min: {
-                  value: 1,
-                  message: MIN_LENGHT_MESSAGE(1),
+                  value: 0,
+                  message: MINLENGTH,
                 },
-                maxLength: {
-                  value: 10,
-                  message: MIN_LENGHT_MESSAGE(3),
+                max: {
+                  value: (watch("MaxQuantity") as number),
+                  message: MAXLENGTHQUANTITY(watch("MaxQuantity") as number),
                 },
                 
               }}
@@ -96,8 +100,8 @@ export default function AddStockDialog({
                   message: REQUIRED_FIELD_MESSAGE,
                 },
                 min: {
-                  value: 1,
-                  message: MIN_LENGHT_MESSAGE(1),
+                  value: (watch("quantity") as number),
+                  message: MINLENGTHMAXQUANTITY(watch("quantity") as number),
                 },
               }}
               render={({ field }) => (

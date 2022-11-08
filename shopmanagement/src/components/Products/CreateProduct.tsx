@@ -45,6 +45,7 @@ export function CreateProduct() {
     handleSubmit,
     reset,
     formState: { errors },
+    watch,
   } = useForm({
     defaultValues: {
       name: "",
@@ -173,12 +174,14 @@ export function CreateProduct() {
                   />
                 )}
               />
+              
               <Controller
                 name="discount"
                 control={control}
                 render={({ field }) => <Switch {...field} color="primary" />}
               />
-              <Controller
+              {watch("discount") && (
+                <Controller
                 name="discountPercentage"
                 control={control}
                 rules={{
@@ -199,6 +202,8 @@ export function CreateProduct() {
                   />
                 )}
               />
+              )}
+              
               {/* {properties && properties.map((property) => (
                     <TextField
                       sx={{ mt: "1rem" }}

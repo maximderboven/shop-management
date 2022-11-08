@@ -44,6 +44,7 @@ export function EditProduct() {
     handleSubmit,
     reset,
     formState: { errors },
+    watch,
   } = useForm({
     defaultValues: {
       name: "",
@@ -187,6 +188,7 @@ export function EditProduct() {
                   control={control}
                   render={({ field }) => <Switch defaultChecked={product.discount} {...field} color="primary" />}
                 />
+                {watch("discount") && (
                 <Controller
                   name="discountPercentage"
                   control={control}
@@ -209,6 +211,7 @@ export function EditProduct() {
                     />
                   )}
                 />
+                )}
                 {/* {properties && properties.map((property) => (
                     <TextField
                       sx={{ mt: "1rem" }}
