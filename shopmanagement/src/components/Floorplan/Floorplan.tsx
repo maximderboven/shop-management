@@ -8,7 +8,7 @@ import {
 import { useParams } from "react-router-dom";
 import { useState, useContext } from "react";
 import Typography from "@mui/material/Typography";
-import "./css/floorplan.css";
+import '../../styles/floorplan.scss';
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { useProducts } from "../../hooks/useProducts";
 import { useShelfsFromDepartment } from "../../hooks/useShelfs";
@@ -18,7 +18,7 @@ import { useDepartmentWithId } from "../../hooks/useDepartments";
 import { ShelfProduct, ShelfProductData } from "../../model/ShelfProduct";
 import AddStockDialog from "./AddStockDialog";
 import EditStockDialog from "./EditStockDialog";
-import UserContext, { IUserContext } from "../../context/UserContext";
+import UserContext, { IUserContext } from "../../contexts/UserContext";
 import { Role } from "../../model/Role";
 import HelpIcon from "@mui/icons-material/Help";
 import IconButton from "@mui/material/IconButton";

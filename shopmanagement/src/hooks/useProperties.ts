@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { ProductProperty, ProductPropertyItem } from "../model/ProductProperty";
+import { ProductPropertyItem } from "../model/ProductProperty";
 import {
   getProperties,
   getProductProperties,

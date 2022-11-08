@@ -926,6 +926,12 @@
       "propertyId": 4,
       "value": "gfsdfgsfgd",
       "id": 9
+    },
+    {
+      "productId": 5,
+      "propertyId": 3,
+      "value": "Orange",
+      "id": 10
     }
   ],
   "properties": [

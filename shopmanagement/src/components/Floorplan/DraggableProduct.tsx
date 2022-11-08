@@ -3,7 +3,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import CardActionArea from "@mui/material/CardActionArea";
 import Typography from "@mui/material/Typography";
-import "./css/floorplan.css";
+import '../../styles/floorplan.scss'
 import { Draggable } from "react-beautiful-dnd";
 import { Product } from "../../model/Product";
 

@@ -4,7 +4,7 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import { Alert, CircularProgress, Divider } from "@mui/material";
+import { Alert, CircularProgress } from "@mui/material";
 import { Link } from "react-router-dom";
 import {
   useStoredProducts
@@ -13,9 +13,9 @@ import { useShelfs } from "../../hooks/useShelfs";
 import { ShelfProduct } from "../../model/ShelfProduct";
 import { Shelf } from "../../model/Shelf";
 import { StoredProductCard } from "../Products/StoredProductCard";
-import './css/departments.css'
+import '../../styles/main.scss'
 import {useContext} from "react";
-import UserContext, { IUserContext } from "../../context/UserContext";
+import UserContext, { IUserContext } from "../../contexts/UserContext";
 import { Role } from "../../model/Role";
 
 export function Departments() {

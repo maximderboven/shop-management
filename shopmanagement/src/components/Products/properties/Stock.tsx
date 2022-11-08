@@ -11,7 +11,7 @@ import { getColor } from "../../../utils/colorgrading";
 import { useShelfs } from "../../../hooks/useShelfs";
 import { useDepartments } from "../../../hooks/useDepartments";
 import { useContext } from "react";
-import UserContext, { IUserContext } from "../../../context/UserContext";
+import UserContext, { IUserContext } from "../../../contexts/UserContext";
 import { Role } from "../../../model/Role";
 
 

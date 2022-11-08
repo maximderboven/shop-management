@@ -1,7 +1,6 @@
-import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
-import {Product} from "../model/Product";
+import { useQuery, useQueryClient} from "@tanstack/react-query";
 import {getProducts} from "../services/ProductDataService";
-import {useEffect, useState} from "react";
+import { useState} from "react";
 
 export function useProducts() {
     const [isPromo, setIsPromo] = useState(false);

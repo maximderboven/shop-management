@@ -1,0 +1,11 @@
+@import '../styles/theme-variables.scss';
+
+.settingsBox {
+  @include themify($themes) {
+    background-color: themed("mainColor");
+    color: themed("colorText");
+  }
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+}

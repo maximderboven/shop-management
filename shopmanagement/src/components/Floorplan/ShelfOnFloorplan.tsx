@@ -1,9 +1,9 @@
 import { Shelf } from "../../model/Shelf";
 import { useContext } from "react";
-import "./css/floorplan.css";
+import '../../styles/floorplan.scss'
 import { getColor } from "../../utils/colorgrading";
 import { ShelfProduct } from "../../model/ShelfProduct";
-import UserContext, { IUserContext } from "../../context/UserContext";
+import UserContext, { IUserContext } from "../../contexts/UserContext";
 import { Role } from "../../model/Role";
 import { Product } from "../../model/Product";
 import { ProductOnShelf } from "./ProductOnShelf";

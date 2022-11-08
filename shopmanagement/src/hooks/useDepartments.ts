@@ -1,4 +1,4 @@
-import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
+import { useQuery, useQueryClient} from "@tanstack/react-query";
 import { getDepartments, getDepartment } from "../services/DepartmentDataService";
 
 export function useDepartments() {

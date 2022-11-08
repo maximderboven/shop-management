@@ -8,7 +8,7 @@ import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import Paper from "@mui/material/Paper";
 import { useContext } from "react";
-import UserContext, { IUserContext } from "../../../context/UserContext";
+import UserContext, { IUserContext } from "../../../contexts/UserContext";
 import { Role } from "../../../model/Role";
 import { useProduct } from "../../../hooks/useProduct";
 import { Navigate } from "react-router-dom";

@@ -16,10 +16,10 @@ import {
   FormGroup,
   Paper,
 } from "@mui/material";
-import "./css/products.css";
+import '../../styles/products.scss'
 import SwapVertIcon from "@mui/icons-material/SwapVert";
 import { useContext } from "react";
-import UserContext, { IUserContext } from "../../context/UserContext";
+import UserContext, { IUserContext } from "../../contexts/UserContext";
 import { Role } from "../../model/Role";
 
 export function Products() {

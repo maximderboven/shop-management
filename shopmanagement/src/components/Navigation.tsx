@@ -4,7 +4,7 @@ import AboutIcon from "@mui/icons-material/InfoOutlined";
 import CategoryIcon from '@mui/icons-material/Category';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import {useContext} from "react";
-import UserContext, { IUserContext } from "../context/UserContext";
+import UserContext, { IUserContext } from "../contexts/UserContext";
 import { Role } from "../model/Role";
 
 interface NavigationProps {

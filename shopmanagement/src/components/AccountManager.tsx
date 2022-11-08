@@ -1,6 +1,6 @@
 import { Button, Typography } from "@mui/material";
 import { useContext } from "react";
-import UserContext, { IUserContext } from "../context/UserContext";
+import UserContext, { IUserContext } from "../contexts/UserContext";
 import { Role } from "../model/Role";
 
 export default function AccountManager() {

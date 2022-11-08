@@ -1,10 +1,10 @@
 import { Chip } from "@mui/material";
 import { useContext } from "react";
-import "./css/floorplan.css";
+import '../../styles/floorplan.scss'
 import CancelIcon from "@mui/icons-material/Cancel";
 import { getColor } from "../../utils/colorgrading";
 import { ShelfProduct } from "../../model/ShelfProduct";
-import UserContext, { IUserContext } from "../../context/UserContext";
+import UserContext, { IUserContext } from "../../contexts/UserContext";
 import { Role } from "../../model/Role";
 import { Price } from "../Products/properties/Price";
 import EditIcon from "@mui/icons-material/Edit";
