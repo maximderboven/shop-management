@@ -4,9 +4,14 @@ import { ProductProperty } from "../model/ProductProperty";
 import { Shelf } from "../model/Shelf";
 import { ShelfProduct } from "../model/ShelfProduct";
 
-export const getProducts = async () => {
-    const response = await axios.get<Product[]>('http://localhost:3001/products');
-    return response.data;
+export const getProducts = async (promo? : boolean) => {
+    if (promo) {
+        const response = await axios.get<Product[]>('http://localhost:3001/products?discount=true');
+        return response.data;
+    } else {
+        const response = await axios.get<Product[]>('http://localhost:3001/products');
+        return response.data;
+    }
 }
 
 export const getProduct = async (id: string) => {

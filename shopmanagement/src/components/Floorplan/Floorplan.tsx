@@ -101,8 +101,6 @@ export function Floorplan() {
     setSelectedProduct(result.draggableId);
     setSelectedShelf(result.destination.droppableId);
     setIsAddDialogOpen(true);
-    console.log(result.source.index);
-    console.log(result.destination.droppableId);
   };
 
   if (

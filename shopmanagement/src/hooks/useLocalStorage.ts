@@ -7,7 +7,6 @@ export default function useLocalStorage(key: string) {
     useEffect(() => {
         const getValue = async () => {
             const storageValue = await localForage.getItem(key);
-            console.log("Current value from storage: ", storageValue);
             setValue(storageValue);
         };
         getValue();

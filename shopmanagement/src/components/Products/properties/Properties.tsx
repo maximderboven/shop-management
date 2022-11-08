@@ -50,7 +50,6 @@ export function Properties() {
 
   function deleteProperty(value: number) {
     deleteProductPropertyMutation(value);
-    console.log("delete property", value);
   }
 
   function addProductProperty(e: React.FormEvent<HTMLFormElement>) {
@@ -85,7 +84,7 @@ export function Properties() {
           <Typography variant="h6">Properties</Typography>
           <Divider sx={{ my: 2 }} />
           {productProperties.map((productProperty) => (
-            <div>
+            <div key={productProperty.id}>
               <Box sx={{ display: "flex", alignItems: "flex-end" }}>
                 <Typography variant="body1" gutterBottom>
                   {
@@ -188,7 +187,7 @@ export function Properties() {
           <Divider />
           {productProperties.length > 0 ? (
             productProperties.map((productProperty) => (
-              <div>
+              <div key={productProperty.id}>
                 <Typography variant="body1" gutterBottom>
                   {
                     properties.find(

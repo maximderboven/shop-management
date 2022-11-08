@@ -23,8 +23,8 @@ export function ProductCard({product }: {product: Productmodel}) {
           </Typography>
           <Typography variant="body2" color="text.secondary">
             {product.description}
-            <Price product={product} />
           </Typography>
+          <Price product={product} />
         </CardContent>
       </CardActionArea>
     </Card>

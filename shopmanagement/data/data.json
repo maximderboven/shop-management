@@ -639,7 +639,7 @@
   "shelfproducts": [
     {
       "spot": 0,
-      "quantity": 10,
+      "quantity": "2",
       "MaxQuantity": 10,
       "shelfId": 23,
       "productId": 8,
@@ -647,7 +647,7 @@
     },
     {
       "spot": 0,
-      "quantity": 10,
+      "quantity": "1",
       "MaxQuantity": 10,
       "shelfId": 36,
       "productId": 9,
@@ -655,7 +655,7 @@
     },
     {
       "spot": 0,
-      "quantity": 10,
+      "quantity": "5",
       "MaxQuantity": 10,
       "shelfId": 33,
       "productId": 11,
@@ -671,7 +671,7 @@
     },
     {
       "spot": 0,
-      "quantity": 10,
+      "quantity": "1",
       "MaxQuantity": 10,
       "shelfId": 58,
       "productId": 13,
@@ -679,7 +679,7 @@
     },
     {
       "spot": 0,
-      "quantity": 10,
+      "quantity": "7",
       "MaxQuantity": 10,
       "shelfId": 63,
       "productId": 2,
@@ -687,7 +687,7 @@
     },
     {
       "spot": 0,
-      "quantity": "10",
+      "quantity": "7",
       "MaxQuantity": 10,
       "shelfId": 3,
       "productId": 7,
@@ -711,8 +711,8 @@
     },
     {
       "spot": 0,
-      "quantity": 10,
-      "MaxQuantity": 10,
+      "quantity": "2",
+      "MaxQuantity": "10",
       "shelfId": 20,
       "productId": 6,
       "id": 30
@@ -756,7 +756,7 @@
     },
     {
       "name": "Orange",
-      "description": "De sinaasappel (ook wel appelsien genoemd) is de vrucht van de sinaasappelboom (Citrus sinensis), die tot het geslacht Citrus behoort.",
+      "description": "The orange (also known as an orange) is the fruit of the orange tree (Citrus sinensis), which belongs to the genus Citrus.",
       "price": "0.5",
       "image": "https://stichtingaromatherapie.nl/wp-content/uploads/2020/09/Sinaasappel.jpg",
       "discount": false,
@@ -764,8 +764,8 @@
       "id": 5
     },
     {
-      "name": "Prei",
-      "description": "Prei is een groente. Groente staat in de Schijf van Vijf. Groente geeft veel voordelen voor de gezondheid en verlaagt het risico op chronische ziekten.",
+      "name": "Leek",
+      "description": "Leeks are vegetables. Vegetables are in the Disk of Five. Vegetables provide many health benefits and reduce the risk of chronic diseases.",
       "price": "0.7",
       "image": "https://groentegroente.nl/wp-content/uploads/Prei-5-S-D-v-lar1-698.jpg",
       "discount": false,
@@ -773,8 +773,8 @@
       "id": 6
     },
     {
-      "name": "Appel",
-      "description": "De appel is een zeer gewaardeerde vrucht, geen mand met fruit zonder appels. Toch is volgens menigeen al onze ellende met een appel begonnen",
+      "name": "Apple",
+      "description": "The apple is a highly prized fruit, no basket of fruit without apples. Yet according to many, all our woes began with an apple",
       "price": "0.6",
       "image": "https://www.fruitatwork.eu/web/image/313362/Image_appel1_800x450.png",
       "discount": false,
@@ -782,8 +782,8 @@
       "id": 7
     },
     {
-      "name": "Wortel",
-      "description": "Wortel is een knolgewas. De groente bevat veel vezels en voedingsstoffen. Wortelen zijn daarnaast rijk aan beta-caroteen.",
+      "name": "Carrot",
+      "description": "Carrot is a root vegetable. The vegetable is high in fiber and nutrients. Carrots are also rich in beta-carotene.",
       "price": "0.2",
       "image": "https://groentegroente.nl/wp-content/uploads/Wortels-1-S-D-698.jpg",
       "discount": false,
@@ -791,8 +791,8 @@
       "id": 8
     },
     {
-      "name": "Kaas",
-      "description": "Kaas is een zuivelproduct met een vaste structuur. Door het toevoegen van stremsel en zuursel worden de vaste stoffen in de melk",
+      "name": "Cheese",
+      "description": "Cheese is a dairy product with a solid structure. By adding rennet and lactic acid, the solids in the milk become",
       "price": "5",
       "image": "https://zuivelonline.nl/media/uploads/2020/10/Kaas_weetjes1.jpg",
       "discount": true,
@@ -800,8 +800,8 @@
       "id": 9
     },
     {
-      "name": "Melk",
-      "description": "Melk is een vloeistof (een emulsie van vetdruppels in water) die door vrouwelijke zoogdieren wordt geproduceerd die net een nakomeling hebben gebaard.",
+      "name": "Milk",
+      "description": "Milk is a liquid (an emulsion of fat droplets in water) produced by female mammals that have just given birth to an offspring.",
       "price": "2",
       "image": "https://cdn.carrefour.eu/300_05121192_5400101020856_00.jpeg",
       "discount": false,
@@ -809,8 +809,8 @@
       "id": 10
     },
     {
-      "name": "Eieren (6)",
-      "description": "Een ei is een voedingsmiddel, dat vanouds veel door mensen (en door andere dieren) wordt gegeten. Alle vogeleieren zijn eetbaar voor de mens",
+      "name": "Eggs (6)",
+      "description": "An egg is a food, traditionally widely eaten by humans (and by other animals). All bird eggs are edible for humans",
       "price": "3.2",
       "image": "https://www.lekkervanbijons.be/sites/default/files/styles/og_image/public/images/beeld_eieren.jpg",
       "discount": false,
@@ -818,8 +818,8 @@
       "id": 11
     },
     {
-      "name": "Kipfilet",
-      "description": "Kipfilet is het borstdeel van de kip. Kenmerk van kipfilet is dat deze vetarm en lichtverteerbaar is. ",
+      "name": "Chicken Breast",
+      "description": "Chicken breast is the breast part of the chicken. A feature of chicken breast is that it is low in fat and easily digestible. ",
       "price": "5.8",
       "image": "https://markey.be/wp-content/uploads/2022/06/258-Kipfilet-330x330.jpg",
       "discount": false,
@@ -828,7 +828,7 @@
     },
     {
       "name": "Croissant",
-      "description": "typisch Frans ontbijtbroodje van gerezen zoet bladerdeeg dat voor het bakken in de vorm van een halvemaan wordt gerold.",
+      "description": "Typical French breakfast bread made of risen sweet puff pastry that is rolled into a crescent shape before baking.",
       "price": "0.5",
       "image": "https://www.ahealthylife.nl/wp-content/uploads/2021/03/Croissant_voedingswaarde.jpg",
       "discount": true,
@@ -836,8 +836,8 @@
       "id": 13
     },
     {
-      "name": "Cornetto Chocolade",
-      "description": "Cornetto (ijsje) · Een Cornetto is een voorverpakt ijshoorntje · Het verpakken van consumptie-ijs",
+      "name": "Cornetto Chocolate",
+      "description": "Cornetto (ice cream) - A Cornetto is a prepackaged ice cream cone - The packaging of ice cream",
       "price": "4.6",
       "image": "https://static.delhaize.be/medias/sys_master/h6d/hbd/11307867471902.jpg",
       "discount": false,
@@ -846,7 +846,7 @@
     },
     {
       "name": "Pizza Mozzarella",
-      "description": "Oetker Ristorante, Smaakt altijd zoals bij de Italiaan. Pizzagenot zoals het moet zijn – een krokante dunne bodem, rijkelijk belegd met zorgvuldig geselecteerde ingrediënten.",
+      "description": "Oetker Ristorante, Always tastes like the Italian. Pizzagenot as it should be - a crispy thin base, richly topped with carefully selected ingredients.",
       "price": "1.9",
       "image": "https://d21a1fytkm286.cloudfront.net/products_472933_image_B698_52722430.png",
       "discount": false,
@@ -854,8 +854,8 @@
       "id": 15
     },
     {
-      "name": "Appelmoes Pot",
-      "description": "Appelmoes of appelspijs is een bijgerecht of nagerecht op basis van appels. Traditioneel wordt voor appelmoes de goudreinette gebruikt",
+      "name": "Applesauce Pot",
+      "description": "Applesauce or apple paste is an apple-based side dish or dessert. Traditionally, for applesauce the golden-orange apple is used",
       "price": "3",
       "image": "https://hak-acceptance.s3.amazonaws.com/beeldbank/08720600612688_A1N1_s01.png",
       "discount": false,
@@ -864,7 +864,7 @@
     },
     {
       "name": "Cola",
-      "description": "Cola is een koolzuurhoudende frisdrank. Het smaakt zoet (maar is qua pH zuur) en bevat circa 28-32 mg cafeïne per 33 cl",
+      "description": "Cola is a carbonated soft drink. It tastes sweet (but is acidic in pH) and contains about 28-32 mg of caffeine per 33 cl",
       "price": "6.3",
       "image": "https://media.s-bol.com/qVJpRJRon0NG/oYl8gB3/1200x1192.jpg",
       "discount": false,
@@ -873,7 +873,7 @@
     },
     {
       "name": "Fanta",
-      "description": "Fanta is, met een aanwezigheid in meer dan 190 landen, het grootste multi-smaken merk ter wereld. Deze bruisende frisdrank lest de dorst van alle tieners.",
+      "description": "Fanta, with a presence in more than 190 countries, is the largest multi-flavored brand in the world. This fizzy soft drink quenches the thirst of all teenagers.",
       "price": "5.6",
       "image": "https://www.foodlog.nl/files/algemeen/Fanta_Orange.jpg",
       "discount": false,
@@ -881,8 +881,8 @@
       "id": 18
     },
     {
-      "name": "WC papier",
-      "description": "Toiletpapier of wc-papier is een papierproduct dat op het toilet wordt gebruikt en dat speciaal is ontworpen voor het reinigen van de anus na het defeceren ",
+      "name": "Toilet paper",
+      "description": "Toilet paper or toilet paper is a paper product used on the toilet specifically designed for cleaning the anus after defecating ",
       "price": "2",
       "image": "https://media.s-bol.com/gn0VAwxK6pK9/550x592.jpg",
       "discount": false,
@@ -911,12 +911,6 @@
     },
     {
       "productId": 5,
-      "propertyId": 3,
-      "value": "Orange",
-      "id": 6
-    },
-    {
-      "productId": 5,
       "propertyId": 7,
       "value": "Skinny",
       "id": 7
@@ -926,6 +920,12 @@
       "propertyId": 6,
       "value": "Appelsienig",
       "id": 8
+    },
+    {
+      "productId": 5,
+      "propertyId": 4,
+      "value": "gfsdfgsfgd",
+      "id": 9
     }
   ],
   "properties": [
